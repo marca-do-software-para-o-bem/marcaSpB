@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "dart-code.flutter",
+        "dart-code.dart-code",
+        "coenraads.bracket-pair-colorizer",
+        "formulahendry.auto-rename-tag",
+        "formulahendry.auto-close-tag",
+        "eamodio.gitlens"
+    ]
+}
