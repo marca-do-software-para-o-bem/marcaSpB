@@ -6,7 +6,8 @@ import 'package:marca_spb/models/user.dart';
 import '../rest_api_service.dart';
 
 // Lembrar de usar o Ngrok para usar https
-const String URL_BASE_AUTHORITY = '2441616a5a80.ngrok.io';
+// Lembrar de add no ALLOWED_USERS no BD
+const String URL_BASE_AUTHORITY = '17b85f477bac.ngrok.io';
 const String URL_ENCODED_PATH = 'usuario';
 
 const Map<String, String> API_USER_HEADERS = {
