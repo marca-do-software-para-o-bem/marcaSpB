@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:marca_spb/utils/services/user/user_api_rest.dart';
+import 'package:marca_spb/utils/services/user/user_services.dart';
 
 import 'models/user.dart';
 
@@ -57,7 +57,6 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
-    print(_userServices.getAllUsers());
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
