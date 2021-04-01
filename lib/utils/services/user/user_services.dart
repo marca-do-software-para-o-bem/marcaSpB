@@ -7,7 +7,7 @@ import '../rest_api_service.dart';
 
 // Lembrar de usar o Ngrok para usar https
 // Lembrar de add no ALLOWED_USERS no BD
-const String URL_BASE_AUTHORITY = '17b85f477bac.ngrok.io';
+const String URL_BASE_AUTHORITY = 'f51c80c712be.ngrok.io';
 const String URL_ENCODED_PATH = 'usuario';
 
 const Map<String, String> API_USER_HEADERS = {
@@ -37,6 +37,24 @@ class UserServices {
     }
   }
 
+  Future<User> getUser(int id) async {
+    try {
+      final Response response = await client
+          .get(Uri.https(URL_BASE_AUTHORITY, '$URL_ENCODED_PATH/$id'))
+          .timeout(Duration(seconds: 10));
+
+      if (response.statusCode == 200) {
+        User user = jsonDecode(response.body);
+
+        return user;
+      } else {
+        throw Exception('Failed to load users');
+      }
+    } catch (e) {
+      throw Exception('Failed to load users $e');
+    }
+  }
+
   Future<User> createUser(User user) async {
     final String userJson = jsonEncode(user.toJson());
 
@@ -49,7 +67,7 @@ class UserServices {
 
       return User.fromJson(jsonDecode(response.body));
     } catch (e) {
-      throw Exception('Failed to create user ' + e);
+      throw Exception('Failed to create user $e');
     }
   }
 
