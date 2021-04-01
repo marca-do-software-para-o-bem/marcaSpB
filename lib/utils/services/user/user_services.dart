@@ -33,7 +33,7 @@ class UserServices {
         throw Exception('Failed to load users');
       }
     } catch (e) {
-      throw Exception('Failed to load users ' + e);
+      throw Exception('Failed to load users $e');
     }
   }
 
