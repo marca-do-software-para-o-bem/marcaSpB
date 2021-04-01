@@ -13,23 +13,20 @@ class MapScreenState extends State<ProfilePage>
   bool _status = true;
   final FocusNode myFocusNode = FocusNode();
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
   UserServices _userServices = UserServices();
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        body: FutureBuilder<User>(
-            future: _userServices.getUser(1),
-            builder: (context, snapshot) {
-              final User user = snapshot.data;
-              return Stack(
-                children: [
-                  Column(
+      body: FutureBuilder<User>(
+          future: _userServices.getUser(1),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {}
+
+            final User user = snapshot.data;
+            return Stack(
+              children: [
+                SingleChildScrollView(
+                  child: Column(
                     children: <Widget>[
                       new Container(
                         height: 250.0,
@@ -341,9 +338,11 @@ class MapScreenState extends State<ProfilePage>
                       )
                     ],
                   ),
-                ],
-              );
-            }));
+                ),
+              ],
+            );
+          }),
+    );
   }
 
   @override
