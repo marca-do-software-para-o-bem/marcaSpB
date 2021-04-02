@@ -1,15 +1,14 @@
 import 'dart:convert';
-
-import 'package:http/http.dart' as http;
-
 import 'models/user.dart';
+import 'package:http/http.dart';
 
 abstract class UserRepository {
   Future<List<User>> getAllUsers();
   Future<User> createUser(user);
 }
 
-const API_URL_BASE = 'https://jsonplaceholder.typicode.com';
+const API_URL_BASE = 'http://4e5f04374f63.ngrok.io/';
+//const API_URL_BASE = 'http://localhost:8000/';
 const Map<String, String> API_HEADERS = {
   'Content-Type': 'application/json; charset=UTF-8'
 };
@@ -18,7 +17,7 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<List<User>> getAllUsers() async {
     try {
-      final response = await http.get(Uri.https(API_URL_BASE, 'usuario'));
+      final response = await get(Uri.parse(API_URL_BASE + 'usuario'));
       if (response.statusCode == 200) {
         return (json.decode(response.body) as List)
             .map((u) => User.fromJson(u))
@@ -33,15 +32,19 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<User> createUser(user) async {
+    print('Criando um usuário');
     try {
       if (user != null) {
-        final response = await http.post(
-          Uri.https(API_URL_BASE, 'usuario'),
+        var url = Uri.parse(API_URL_BASE + 'usuario/');
+        final response = await post(
+          url,
           headers: API_HEADERS,
           body: jsonEncode({
-            'userId': user.userId,
-            'name': user.name,
+            'first_name': '00000',
+            'username': '00000',
             'email': user.email,
+            'account': {'cep': '00000', 'endereco': '00000', 'cnpj': '00000'},
+            'password': user.password
           }),
         );
 

@@ -1,15 +1,33 @@
 class User {
-  int userId;
-  String name;
+  String username;
+  // ignore: non_constant_identifier_names
+  String first_name;
   String email;
+  String password;
+  Account account;
 
-  User({this.userId, this.name, this.email});
+  User(
+      {this.username,
+      this.first_name,
+      this.email,
+      this.password,
+      this.account});
 
   factory User.fromJson(Map<String, dynamic> responseData) {
     return User(
-      userId: responseData['userId'],
+      username: responseData['username'],
+      first_name: responseData['first_name'],
       email: responseData['email'],
-      name: responseData['name'],
+      account: responseData['account'],
+      password: responseData['password'],
     );
   }
+}
+
+class Account {
+  String cep;
+  String endereco;
+  String cnpj;
+
+  Account({this.cep, this.endereco, this.cnpj});
 }
