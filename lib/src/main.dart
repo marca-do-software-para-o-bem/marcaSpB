@@ -5,9 +5,16 @@ import 'package:marca_spb/src/blocs/signup/signup_bloc.dart';
 import 'package:marca_spb/src/data/user_repository/user_repository.dart';
 import 'package:marca_spb/src/presentation/login/login_screen.dart';
 
-void main() => runApp(MaterialApp(
-    title: 'SpB',
-    home: BlocProvider(
-      create: (BuildContext context) => UserBloc(UserRepositoryImpl()),
-      child: LoginScreen(),
-    )));
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'SpB',
+        home: BlocProvider(
+          create: (BuildContext context) => UserBloc(UserRepositoryImpl()),
+          child: LoginPage(),
+        ));
+  }
+}

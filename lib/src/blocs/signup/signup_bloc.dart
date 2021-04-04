@@ -31,7 +31,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
   Stream<UserState> _mapUsersLoadedToState() async* {
     try {
-      var users = (await this.repository.getAllUsers());
+      var users = await this.repository.getAllUsers();
       yield LoadedSucessState(users);
     } catch (e) {
       yield ErrorState("error loading users");
@@ -46,7 +46,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         print(newUser);
         List<User> updatedUsers;
         if (newUser != null) {
-          updatedUsers = List.from((state as LoadedSucessState).user)
+          updatedUsers = List.from((state as LoadedSucessState).users)
             ..add(newUser);
         }
 

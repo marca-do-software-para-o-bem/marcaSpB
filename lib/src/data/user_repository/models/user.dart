@@ -4,7 +4,7 @@ class User {
   String first_name;
   String email;
   String password;
-  Account account;
+  Object account;
 
   User(
       {this.username,

@@ -7,7 +7,7 @@ abstract class UserRepository {
   Future<User> createUser(user);
 }
 
-const API_URL_BASE = 'http://4e5f04374f63.ngrok.io/';
+const API_URL_BASE = 'https://8f4e7a693ed8.ngrok.io';
 //const API_URL_BASE = 'http://localhost:8000/';
 const Map<String, String> API_HEADERS = {
   'Content-Type': 'application/json; charset=UTF-8'
@@ -17,7 +17,8 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<List<User>> getAllUsers() async {
     try {
-      final response = await get(Uri.parse(API_URL_BASE + 'usuario'));
+      var url = Uri.parse(API_URL_BASE + '/usuario/');
+      final response = await get(url);
       if (response.statusCode == 200) {
         return (json.decode(response.body) as List)
             .map((u) => User.fromJson(u))
@@ -26,7 +27,7 @@ class UserRepositoryImpl implements UserRepository {
         throw Exception('Failed to load users');
       }
     } catch (e) {
-      throw Exception('Failed to load users ' + e);
+      throw Exception('Failed to load users ' + e.toString());
     }
   }
 
@@ -35,7 +36,7 @@ class UserRepositoryImpl implements UserRepository {
     print('Criando um usuário');
     try {
       if (user != null) {
-        var url = Uri.parse(API_URL_BASE + 'usuario/');
+        var url = Uri.parse(API_URL_BASE + '/usuario/');
         final response = await post(
           url,
           headers: API_HEADERS,
@@ -55,7 +56,7 @@ class UserRepositoryImpl implements UserRepository {
         }
       }
     } catch (e) {
-      throw Exception('Failed to create a user ' + e);
+      throw Exception('Failed to create a user ' + e.toString());
     }
   }
 }

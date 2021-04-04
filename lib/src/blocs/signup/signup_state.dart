@@ -23,10 +23,10 @@ class LoadingState extends UserState {
 }
 
 class LoadedSucessState extends UserState {
-  final List<User> user;
-  const LoadedSucessState(this.user);
+  final List<User> users;
+  const LoadedSucessState(this.users);
   @override
-  List<Object> get props => [user];
+  List<Object> get props => [users];
 }
 
 class ErrorState extends UserState {
