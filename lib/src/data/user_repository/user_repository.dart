@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:marca_spb/src/constants/api_path.dart';
+
 import 'models/user.dart';
 import 'package:http/http.dart';
 
@@ -7,17 +9,11 @@ abstract class UserRepository {
   Future<User> createUser(user);
 }
 
-const API_URL_BASE = 'https://8f4e7a693ed8.ngrok.io';
-//const API_URL_BASE = 'http://localhost:8000/';
-const Map<String, String> API_HEADERS = {
-  'Content-Type': 'application/json; charset=UTF-8'
-};
-
 class UserRepositoryImpl implements UserRepository {
   @override
   Future<List<User>> getAllUsers() async {
     try {
-      var url = Uri.parse(API_URL_BASE + '/usuario/');
+      var url = Uri.parse(API_URL_BASE + 'usuario/');
       final response = await get(url);
       if (response.statusCode == 200) {
         return (json.decode(response.body) as List)
