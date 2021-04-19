@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:marca_spb/utils/services/user/user_services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marca_spb/models/user.dart';
+import 'package:marca_spb/modules/screen/user_profile/bloc/profile_bloc.dart';
+import 'package:marca_spb/modules/screen/user_profile/bloc/profile_event.dart';
+import 'package:marca_spb/modules/screen/user_profile/bloc/profile_state.dart';
+import 'package:marca_spb/modules/screen/user_profile/components/circular_loading.dart';
+
+const String _APPBARTITLE = 'Profile';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -11,18 +17,25 @@ class ProfilePage extends StatefulWidget {
 class MapScreenState extends State<ProfilePage>
     with SingleTickerProviderStateMixin {
   bool _status = true;
+  Bloc _bloc = ProfilePageBloc(ProfileState());
   final FocusNode myFocusNode = FocusNode();
 
-  UserServices _userServices = UserServices();
+  @override
+  void initState() {
+    super.initState();
+    _bloc.add(ProfilePageStart());
+  }
+
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      body: FutureBuilder<User>(
-          future: _userServices.getUser(1),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              final User user = snapshot.data;
-              return Stack(
+    return BlocBuilder(
+        bloc: _bloc,
+        builder: (context, state) {
+          if (state.user != null) {
+            User user = state.user;
+            return new Scaffold(
+              appBar: _getAppBar(),
+              body: Stack(
                 children: [
                   SingleChildScrollView(
                     child: Column(
@@ -33,30 +46,7 @@ class MapScreenState extends State<ProfilePage>
                           child: new Column(
                             children: <Widget>[
                               Padding(
-                                  padding:
-                                      EdgeInsets.only(left: 20.0, top: 20.0),
-                                  child: new Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      new Icon(
-                                        Icons.arrow_back_ios,
-                                        color: Colors.black,
-                                        size: 22.0,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(left: 25.0),
-                                        child: new Text('PROFILE',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 20.0,
-                                                fontFamily: 'sans-serif-light',
-                                                color: Colors.black)),
-                                      )
-                                    ],
-                                  )),
-                              Padding(
-                                padding: EdgeInsets.only(top: 20.0),
+                                padding: EdgeInsets.only(top: 40.0),
                                 child: new Stack(
                                     fit: StackFit.loose,
                                     children: <Widget>[
@@ -123,7 +113,7 @@ class MapScreenState extends State<ProfilePage>
                                           mainAxisSize: MainAxisSize.min,
                                           children: <Widget>[
                                             new Text(
-                                              user.email,
+                                              user.username,
                                               style: TextStyle(
                                                   fontSize: 18.0,
                                                   fontWeight: FontWeight.bold),
@@ -187,8 +177,11 @@ class MapScreenState extends State<ProfilePage>
                                             padding:
                                                 EdgeInsets.only(right: 10.0),
                                             child: new TextField(
-                                              decoration: const InputDecoration(
-                                                  hintText: "Enter Name"),
+                                              decoration: InputDecoration(
+                                                hintText: user.firstName,
+                                                hintStyle: TextStyle(
+                                                    color: Colors.grey[900]),
+                                              ),
                                               enabled: !_status,
                                             ),
                                           ),
@@ -196,8 +189,11 @@ class MapScreenState extends State<ProfilePage>
                                         ),
                                         Flexible(
                                           child: new TextField(
-                                            decoration: const InputDecoration(
-                                                hintText: "Enter CPF/CNPJ"),
+                                            decoration: InputDecoration(
+                                              hintText: user.account.cnpj,
+                                              hintStyle: TextStyle(
+                                                  color: Colors.grey[900]),
+                                            ),
                                             enabled: !_status,
                                           ),
                                           flex: 2,
@@ -233,8 +229,11 @@ class MapScreenState extends State<ProfilePage>
                                       children: <Widget>[
                                         new Flexible(
                                           child: new TextField(
-                                            decoration: const InputDecoration(
-                                                hintText: "Enter Email "),
+                                            decoration: InputDecoration(
+                                              hintText: user.email,
+                                              hintStyle: TextStyle(
+                                                  color: Colors.grey[900]),
+                                            ),
                                             enabled: !_status,
                                           ),
                                         ),
@@ -269,8 +268,11 @@ class MapScreenState extends State<ProfilePage>
                                       children: <Widget>[
                                         new Flexible(
                                           child: new TextField(
-                                            decoration: const InputDecoration(
-                                                hintText: "Enter Adress"),
+                                            decoration: InputDecoration(
+                                              hintText: user.account.endereco,
+                                              hintStyle: TextStyle(
+                                                  color: Colors.grey[900]),
+                                            ),
                                             enabled: !_status,
                                           ),
                                         ),
@@ -295,17 +297,6 @@ class MapScreenState extends State<ProfilePage>
                                           ),
                                           flex: 2,
                                         ),
-                                        Expanded(
-                                          child: Container(
-                                            child: new Text(
-                                              'State',
-                                              style: TextStyle(
-                                                  fontSize: 16.0,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                          flex: 2,
-                                        ),
                                       ],
                                     )),
                                 Padding(
@@ -321,18 +312,13 @@ class MapScreenState extends State<ProfilePage>
                                             padding:
                                                 EdgeInsets.only(right: 10.0),
                                             child: new TextField(
-                                              decoration: const InputDecoration(
-                                                  hintText: "Enter Pin Code"),
+                                              decoration: InputDecoration(
+                                                hintText: user.account.cep,
+                                                hintStyle: TextStyle(
+                                                    color: Colors.grey[900]),
+                                              ),
                                               enabled: !_status,
                                             ),
-                                          ),
-                                          flex: 2,
-                                        ),
-                                        Flexible(
-                                          child: new TextField(
-                                            decoration: const InputDecoration(
-                                                hintText: "Enter State"),
-                                            enabled: !_status,
                                           ),
                                           flex: 2,
                                         ),
@@ -349,11 +335,11 @@ class MapScreenState extends State<ProfilePage>
                     ),
                   ),
                 ],
-              );
-            }
-            return Center(child: CircularProgressIndicator());
-          }),
-    );
+              ),
+            );
+          }
+          return CircularLoading(_getAppBar());
+        });
   }
 
   @override
@@ -431,6 +417,14 @@ class MapScreenState extends State<ProfilePage>
           _status = false;
         });
       },
+    );
+  }
+
+  Widget _getAppBar() {
+    return AppBar(
+      title: Text(_APPBARTITLE),
+      centerTitle: true,
+      backgroundColor: Colors.red,
     );
   }
 }

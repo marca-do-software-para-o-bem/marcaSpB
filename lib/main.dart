@@ -10,7 +10,7 @@ main() {
     debugShowCheckedModeBanner: false,
     theme: new ThemeData(
         primaryColor: Color(0xff0082CD), primaryColorDark: Color(0xff0082CD)),
-    home: new SplashScreen(),
+    home: new ProfilePage(),
     routes: <String, WidgetBuilder>{
       //SPLASH_SCREEN: (BuildContext context) => new MapScreen(),
       PROFILE: (BuildContext context) => new ProfilePage(),
