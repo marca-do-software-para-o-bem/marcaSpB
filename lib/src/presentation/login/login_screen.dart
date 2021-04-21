@@ -7,7 +7,9 @@ import 'package:flutter_login/flutter_login.dart';
 import 'package:marca_spb/src/blocs/signup/signup_bloc.dart';
 import 'package:marca_spb/src/data/user_repository/models/user.dart';
 import 'package:marca_spb/src/data/user_repository/user_repository.dart';
+import 'package:marca_spb/src/presentation/menu/menu_screen.dart';
 import '../../app.dart';
+import 'package:marca_spb/src/config/routes/routes.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key}) : super(key: key);
@@ -59,12 +61,12 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return FlutterLogin(
       title: 'SpB',
-      logo: 'assets/images/ecorp-lightgreen.png',
+      //logo: 'assets/images/ecorp-lightgreen.png',
       onLogin: _authUser,
       onSignup: _signupUser,
       onSubmitAnimationCompleted: () {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => App(),
+          builder: (context) => HomePage(),
         ));
       },
       onRecoverPassword: _recoverPassword,
