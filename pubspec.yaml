@@ -33,7 +33,7 @@ dependencies:
   equatable : ^2.0.0
   bloc: ^7.0.0
   flutter_bloc : ^7.0.0
-
+  faker: ^1.3.0
 
 dev_dependencies:
   flutter_test:

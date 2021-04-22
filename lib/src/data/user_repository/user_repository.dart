@@ -3,6 +3,7 @@ import 'package:marca_spb/src/constants/api_path.dart';
 
 import 'models/user.dart';
 import 'package:http/http.dart';
+import 'package:faker/faker.dart';
 
 abstract class UserRepository {
   Future<List<User>> getAllUsers();
@@ -32,13 +33,13 @@ class UserRepositoryImpl implements UserRepository {
     print('Criando um usuário');
     try {
       if (user != null) {
-        var url = Uri.parse(API_URL_BASE + '/usuario/');
+        var url = Uri.parse(API_URL_BASE + 'usuario/');
         final response = await post(
           url,
           headers: API_HEADERS,
           body: jsonEncode({
             'first_name': '00000',
-            'username': '00000',
+            'username': faker.internet.userName(),
             'email': user.email,
             'account': {'cep': '00000', 'endereco': '00000', 'cnpj': '00000'},
             'password': user.password
