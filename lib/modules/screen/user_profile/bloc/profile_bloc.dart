@@ -12,7 +12,7 @@ class ProfilePageBloc extends Bloc<ProfilePageEvent, ProfileState> {
   Stream<ProfileState> mapEventToState(event) async* {
     if (event is ProfilePageStart) {
       try {
-        User user = await services.getUser(5);
+        User user = await services.getUser(6);
         yield state.copy(user: user);
       } catch (error) {
         yield state;
