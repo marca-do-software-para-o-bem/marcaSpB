@@ -10,6 +10,17 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.blue[400],
       ),
       body: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Clique para gerar uma nova'),
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, '/questionary'),
+              child: Text('Clica aqui'),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -52,7 +63,7 @@ class SideDrawer extends StatelessWidget {
             leading: Icon(Icons.exit_to_app),
             title: Text('Logout'),
             onTap: () => Navigator.of(context).pop(),
-            ),
+          ),
         ],
       ),
     );

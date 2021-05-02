@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:marca_spb/modules/screen/HomePage.dart';
 import 'package:marca_spb/modules/screen/login/LoginPage.dart';
 import 'package:marca_spb/utils/services/user/user_repository.dart';
 
@@ -7,7 +8,7 @@ import 'constants/constants_screen.dart';
 import 'modules/screen/login/bloc/signup_bloc.dart';
 import 'modules/screen/user_profile/ProfilePage.dart';
 import 'modules/screen/user_profile/SplashScreen.dart';
-import'package:marca_spb/modules/screen/login/LoginPage.dart';
+import 'package:marca_spb/modules/screen/login/LoginPage.dart';
 
 import 'package:flutter/material.dart';
 
