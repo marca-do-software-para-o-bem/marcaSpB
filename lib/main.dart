@@ -21,7 +21,7 @@ main() {
         primaryColor: Color(0xff0082CD), primaryColorDark: Color(0xff0082CD)),
     home: BlocProvider(
       create: (BuildContext context) => UserBloc(UserRepositoryImpl()),
-      child: LoginPage(),
+      child: HomePage(),
     ),
     // routes: <String, WidgetBuilder>{
     //   //SPLASH_SCREEN: (BuildContext context) => new MapScreen(),

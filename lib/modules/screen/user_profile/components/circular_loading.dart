@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CircularLoading extends StatelessWidget {
-  Widget _appBar;
+  final Widget _appBar;
 
   CircularLoading(this._appBar);
 
