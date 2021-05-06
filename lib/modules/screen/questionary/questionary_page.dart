@@ -49,14 +49,33 @@ class QuestionaryPage extends StatelessWidget {
                             onChanged: (value) {
                               _bloc.add(QuestionaryPageUpdateDignidade(
                                   state.qualities));
-                              print('${state.qualities.dignidade}');
                             },
                           ),
                           Switch(
                             value: state.qualities.confianca,
                             onChanged: (value) {
-                              print('${state.qualities.confianca}');
                               _bloc.add(QuestionaryPageUpdateConfianca(
+                                  state.qualities));
+                            },
+                          ),
+                          Switch(
+                            value: state.qualities.empoderamento,
+                            onChanged: (value) {
+                              _bloc.add(QuestionaryPageUpdateEmpoderamento(
+                                  state.qualities));
+                            },
+                          ),
+                          Switch(
+                            value: state.qualities.transformacao,
+                            onChanged: (value) {
+                              _bloc.add(QuestionaryPageUpdateTransformacao(
+                                  state.qualities));
+                            },
+                          ),
+                          Switch(
+                            value: state.qualities.cidadania,
+                            onChanged: (value) {
+                              _bloc.add(QuestionaryPageUpdateCidadania(
                                   state.qualities));
                             },
                           ),

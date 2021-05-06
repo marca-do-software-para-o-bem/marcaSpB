@@ -8,10 +8,6 @@ abstract class QuestionaryState {
 
 class EmptyState extends QuestionaryState {}
 
-class InitialState extends QuestionaryState {
-  const InitialState();
-}
-
 class LoadingState extends QuestionaryState {
   const LoadingState();
 }

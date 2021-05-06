@@ -31,6 +31,27 @@ class QuestionaryPageBloc extends Bloc<QuestionaryPageEvent, QuestionaryState> {
       } catch (error) {
         yield state;
       }
+    } else if (event is QuestionaryPageUpdateEmpoderamento) {
+      try {
+        yield LoadingState();
+        yield* _updatingEmpoderamentoToState(event);
+      } catch (error) {
+        yield state;
+      }
+    } else if (event is QuestionaryPageUpdateTransformacao) {
+      try {
+        yield LoadingState();
+        yield* _updatingTransformacaoToState(event);
+      } catch (error) {
+        yield state;
+      }
+    } else if (event is QuestionaryPageUpdateCidadania) {
+      try {
+        yield LoadingState();
+        yield* _updatingCidadaniaToState(event);
+      } catch (error) {
+        yield state;
+      }
     }
   }
 
@@ -68,6 +89,39 @@ class QuestionaryPageBloc extends Bloc<QuestionaryPageEvent, QuestionaryState> {
     try {
       Brand marca = event.confianca;
       marca.confianca = !marca.confianca;
+      yield LoadedSucessState(marca);
+    } catch (error) {
+      yield ErrorState('Cannot Change Brand Qualities');
+    }
+  }
+
+  Stream<QuestionaryState> _updatingEmpoderamentoToState(
+      QuestionaryPageUpdateEmpoderamento event) async* {
+    try {
+      Brand marca = event.empoderamento;
+      marca.empoderamento = !marca.empoderamento;
+      yield LoadedSucessState(marca);
+    } catch (error) {
+      yield ErrorState('Cannot Change Brand Qualities');
+    }
+  }
+
+  Stream<QuestionaryState> _updatingTransformacaoToState(
+      QuestionaryPageUpdateTransformacao event) async* {
+    try {
+      Brand marca = event.transformacao;
+      marca.transformacao = !marca.transformacao;
+      yield LoadedSucessState(marca);
+    } catch (error) {
+      yield ErrorState('Cannot Change Brand Qualities');
+    }
+  }
+
+  Stream<QuestionaryState> _updatingCidadaniaToState(
+      QuestionaryPageUpdateCidadania event) async* {
+    try {
+      Brand marca = event.cidadania;
+      marca.cidadania = !marca.cidadania;
       yield LoadedSucessState(marca);
     } catch (error) {
       yield ErrorState('Cannot Change Brand Qualities');
