@@ -1,9 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:marca_spb/models/brand.dart';
-import 'package:marca_spb/models/user.dart';
 import 'package:marca_spb/modules/screen/questionary/bloc/questionary_event.dart';
 import 'package:marca_spb/modules/screen/questionary/bloc/questionary_state.dart';
-import 'package:marca_spb/utils/services/user/user_services.dart';
 
 class QuestionaryPageBloc extends Bloc<QuestionaryPageEvent, QuestionaryState> {
   QuestionaryPageBloc(QuestionaryState initialState) : super(initialState);
