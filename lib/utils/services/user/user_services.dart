@@ -7,7 +7,7 @@ import '../rest_api_service.dart';
 
 // Lembrar de usar o Ngrok para usar https
 // Lembrar de add no ALLOWED_USERS no BD
-const String URL_BASE_AUTHORITY = '08fb6d58a73a.ngrok.io';
+const String URL_BASE_AUTHORITY = '189346f7fa54.ngrok.io';
 const String URL_ENCODED_PATH = 'usuario';
 
 const Map<String, String> API_USER_HEADERS = {
