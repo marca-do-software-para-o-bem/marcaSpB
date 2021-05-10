@@ -57,7 +57,12 @@ class SideDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.border_color),
             title: Text('Criar marca'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {Navigator.pushNamed(context, '/questionary')},
+          ),
+          ListTile(
+            leading: Icon(Icons.border_color),
+            title: Text('Editar SpB'),
+            onTap: () => {Navigator.pushNamed(context, '/generate')},
           ),
           ListTile(
             leading: Icon(Icons.exit_to_app),

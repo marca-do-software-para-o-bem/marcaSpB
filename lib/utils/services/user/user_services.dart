@@ -7,11 +7,11 @@ import '../rest_api_service.dart';
 
 // Lembrar de usar o Ngrok para usar https
 // Lembrar de add no ALLOWED_USERS no BD
-const String URL_BASE_AUTHORITY = '08fb6d58a73a.ngrok.io';
+const String URL_BASE_AUTHORITY = '9a81d5323ded.ngrok.io';
 const String URL_ENCODED_PATH = 'usuario';
 
 const Map<String, String> API_USER_HEADERS = {
-  'Content-Type': 'application/json; charset=UTF-8'
+  'content-Type': 'application/json; charset=UTF-8'
 };
 
 class UserServices {
@@ -61,11 +61,11 @@ class UserServices {
     try {
       final Response response = await client.post(
         Uri.https(URL_BASE_AUTHORITY, URL_ENCODED_PATH),
-        headers: API_USER_HEADERS,
         body: userJson,
       );
-
-      return User.fromJson(jsonDecode(response.body));
+      var data = User.fromJson(jsonDecode(response.body));
+      print(data);
+      return data;
     } catch (e) {
       throw Exception('Failed to create user $e');
     }

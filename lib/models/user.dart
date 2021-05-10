@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'account.dart';
 
 class User {
@@ -7,7 +9,8 @@ class User {
   String password;
   Account account;
 
-  User({this.username, this.firstName, this.email, this.account, this.password});
+  User(
+      {this.username, this.firstName, this.email, this.account, this.password});
 
   User.fromJson(Map<String, dynamic> json) {
     username = json['username'];
