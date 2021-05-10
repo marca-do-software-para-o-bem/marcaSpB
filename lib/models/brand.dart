@@ -5,12 +5,13 @@ class Brand {
   bool transformacao;
   bool cidadania;
 
-  Brand(
-      {this.dignidade,
-      this.confianca,
-      this.empoderamento,
-      this.transformacao,
-      this.cidadania});
+  Brand({
+    this.dignidade,
+    this.confianca,
+    this.empoderamento,
+    this.transformacao,
+    this.cidadania,
+  });
 
   Brand.fromJson(Map<String, dynamic> json) {
     dignidade = json['dignidade'];

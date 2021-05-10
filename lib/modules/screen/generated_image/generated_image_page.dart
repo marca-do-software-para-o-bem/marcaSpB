@@ -24,7 +24,7 @@ class _HomeState extends State<GeneratedImagePage> {
   bool valid = false;
   Brand brand = Brand(
     cidadania: true,
-    confianca: true,
+    confianca: false,
     dignidade: false,
     empoderamento: true,
     transformacao: true,
