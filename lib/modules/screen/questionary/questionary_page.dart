@@ -36,7 +36,7 @@ class QuestionaryPage extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      'Selecione 3 das caracteristicas apresentadas que mais representa sua empresa:',
+                      'Selecione 3 ou mais das caracteristicas apresentadas que mais representa sua empresa:',
                       style: TextStyle(fontSize: 20),
                     ),
                     SizedBox(height: 20),
@@ -44,40 +44,65 @@ class QuestionaryPage extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(25, 10, 0, 0),
                       child: Column(
                         children: [
-                          Switch(
-                            value: state.qualities.dignidade,
-                            onChanged: (value) {
-                              _bloc.add(QuestionaryPageUpdateDignidade(
-                                  state.qualities));
-                            },
+                          Row(
+                            children: [
+                              Switch(
+                                value: state.qualities.dignidade,
+                                onChanged: (value) {
+                                  _bloc.add(QuestionaryPageUpdateDignidade(
+                                      state.qualities));
+                                },
+                              ),
+                              Text('Dignidade'),
+                            ],
                           ),
-                          Switch(
-                            value: state.qualities.confianca,
-                            onChanged: (value) {
-                              _bloc.add(QuestionaryPageUpdateConfianca(
-                                  state.qualities));
-                            },
+                          Row(
+                            children: [
+                              Switch(
+                                value: state.qualities.confianca,
+                                onChanged: (value) {
+                                  _bloc.add(QuestionaryPageUpdateConfianca(
+                                      state.qualities));
+                                },
+                              ),
+                              Text('Confiança')
+                            ],
                           ),
-                          Switch(
-                            value: state.qualities.empoderamento,
-                            onChanged: (value) {
-                              _bloc.add(QuestionaryPageUpdateEmpoderamento(
-                                  state.qualities));
-                            },
+                          Row(
+                            children: [
+                              Switch(
+                                value: state.qualities.empoderamento,
+                                onChanged: (value) {
+                                  _bloc.add(QuestionaryPageUpdateEmpoderamento(
+                                      state.qualities));
+                                },
+                              ),
+                              Text('Empoderamento')
+                            ],
                           ),
-                          Switch(
-                            value: state.qualities.transformacao,
-                            onChanged: (value) {
-                              _bloc.add(QuestionaryPageUpdateTransformacao(
-                                  state.qualities));
-                            },
+                          Row(
+                            children: [
+                              Switch(
+                                value: state.qualities.transformacao,
+                                onChanged: (value) {
+                                  _bloc.add(QuestionaryPageUpdateTransformacao(
+                                      state.qualities));
+                                },
+                              ),
+                              Text('Transformação')
+                            ],
                           ),
-                          Switch(
-                            value: state.qualities.cidadania,
-                            onChanged: (value) {
-                              _bloc.add(QuestionaryPageUpdateCidadania(
-                                  state.qualities));
-                            },
+                          Row(
+                            children: [
+                              Switch(
+                                value: state.qualities.cidadania,
+                                onChanged: (value) {
+                                  _bloc.add(QuestionaryPageUpdateCidadania(
+                                      state.qualities));
+                                },
+                              ),
+                              Text('Cidadania')
+                            ],
                           ),
                         ],
                       ),
@@ -100,10 +125,38 @@ class QuestionaryPage extends StatelessWidget {
                           ),
                         ),
                         onTap: () {
-                          print(
-                              'Valor da dignidade é:${state.qualities.dignidade}');
-                          print(
-                              'Valor da confianca é:${state.qualities.confianca}');
+                          List values = [
+                            state.qualities.cidadania,
+                            state.qualities.confianca,
+                            state.qualities.dignidade,
+                            state.qualities.empoderamento,
+                            state.qualities.transformacao,
+                          ];
+                          var counter =
+                              values.where((element) => element == true).length;
+
+                          if (counter >= 3) {
+                            print(
+                                'Valor da dignidade é:${state.qualities.dignidade}');
+                            print(
+                                'Valor da confianca é:${state.qualities.confianca}');
+                          } else {
+                            showDialog(
+                                context: context,
+                                builder: (_) => AlertDialog(
+                                      title: new Text("Erro"),
+                                      content: new Text(
+                                          "Você selecionou menos que 3 caracteristicas"),
+                                      actions: <Widget>[
+                                        FlatButton(
+                                          child: Text('Fechar'),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        )
+                                      ],
+                                    ));
+                          }
                         },
                       ),
                     )
