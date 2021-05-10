@@ -9,8 +9,10 @@ import 'constants/constants_screen.dart';
 import 'modules/screen/generated_image/generated_image_page.dart';
 import 'modules/screen/login/bloc/signup_bloc.dart';
 import 'modules/screen/user_profile/ProfilePage.dart';
+import 'modules/screen/user_profile/ProfilePage.dart';
 import 'modules/screen/user_profile/SplashScreen.dart';
 import 'package:marca_spb/modules/screen/login/LoginPage.dart';
+import './modules/screen/testePost.dart';
 
 import 'package:flutter/material.dart';
 
@@ -23,7 +25,7 @@ main() {
         primaryColor: Color(0xff0082CD), primaryColorDark: Color(0xff0082CD)),
     home: BlocProvider(
       create: (BuildContext context) => UserBloc(UserRepositoryImpl()),
-      child: GeneratedImagePage(),
+      child: TestePost(),
     ),
     // routes: <String, WidgetBuilder>{
     //   //SPLASH_SCREEN: (BuildContext context) => new MapScreen(),
