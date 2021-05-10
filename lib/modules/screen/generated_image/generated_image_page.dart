@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:marca_spb/models/brand.dart';
+import 'package:marca_spb/modules/screen/generated_image/components/caputureFunction.dart';
 import 'package:marca_spb/utils/services/color_generator.dart';
 import 'dart:math';
 import 'dart:io';
@@ -13,6 +14,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 
+import 'components/shapesClasses.dart';
+import 'components/titles_and_buttons.dart';
 import 'components/widget_to_image.dart';
 
 class GeneratedImagePage extends StatefulWidget {
@@ -21,7 +24,12 @@ class GeneratedImagePage extends StatefulWidget {
 }
 
 class _HomeState extends State<GeneratedImagePage> {
-  bool valid = false;
+  int valid = 0;
+  int validXPosition = 0;
+  int validYPosition = 0;
+  Square square = new Square();
+  SquareRounded squareRounded = new SquareRounded();
+  Circle circle = new Circle();
   Brand brand = Brand(
     cidadania: true,
     confianca: true,
@@ -30,38 +38,46 @@ class _HomeState extends State<GeneratedImagePage> {
     transformacao: true,
   );
 
-  Color _colorSquare() {
-    if (valid == false) {
-      return Color.fromARGB(255, 0, 175, 228);
-    } else {
-      return UniqueColorGenerator.getSquareColor(brand);
-    }
-  }
-
-  Color _colorSquareRounded() {
-    if (valid == false) {
-      return Color.fromARGB(255, 233, 66, 130);
-    } else {
-      return UniqueColorGenerator.getSquareRoundedColor();
-    }
-  }
-
-  Color _colorCircle() {
-    if (valid == false) {
-      return Color.fromARGB(255, 149, 193, 31);
-    } else {
-      return UniqueColorGenerator.getCircleColor(brand);
-    }
-  }
-
-  Color _changeColor() {
-    valid = true;
+  void _changeColor() {
+    valid = 1;
     setState(() {});
   }
 
-  void _reset() {
-    valid = false;
+  void _resetColor() {
+    valid = 0;
     setState(() {});
+  }
+
+  void _lockColor() {
+    valid = 3;
+  }
+
+  void _changeXPosition() {
+    validXPosition = 1;
+    setState(() {});
+  }
+
+  void _resetXPosition() {
+    validXPosition = 0;
+    setState(() {});
+  }
+
+  void _lockXPostion() {
+    validXPosition = 3;
+  }
+
+  void _changeYPosition() {
+    validYPosition = 1;
+    setState(() {});
+  }
+
+  void _resetYPosition() {
+    validYPosition = 0;
+    setState(() {});
+  }
+
+  void _lockYPostion() {
+    validYPosition = 3;
   }
 
   GlobalKey key1;
@@ -79,6 +95,7 @@ class _HomeState extends State<GeneratedImagePage> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
+        padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -91,17 +108,45 @@ class _HomeState extends State<GeneratedImagePage> {
                   child: Column(
                     children: [
                       Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 50, 0),
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(MdiIcons.square,
-                                    size: 75, color: _colorSquare()),
-                                Icon(MdiIcons.squareRounded,
-                                    size: 75, color: _colorSquareRounded()),
-                                Icon(MdiIcons.circle,
-                                    size: 75, color: _colorCircle())
-                              ])),
+                            Stack(
+                              children: [
+                                Container(
+                                  color: Colors.white,
+                                  width: 300,
+                                  height: 80,
+                                ),
+                                Positioned(
+                                  left: square.squareXPosition(validXPosition),
+                                  bottom:
+                                      square.squareYPosition(validYPosition),
+                                  child: Icon(MdiIcons.square,
+                                      size: 70,
+                                      color: square.colorSquare(valid)),
+                                ),
+                                Positioned(
+                                  left: squareRounded
+                                      .squareRoundedXPosition(validXPosition),
+                                  bottom: squareRounded
+                                      .squareRoundedYPosition(validYPosition),
+                                  child: Icon(MdiIcons.squareRounded,
+                                      size: 70,
+                                      color: squareRounded
+                                          .colorSquareRounded(valid)),
+                                ),
+                                Positioned(
+                                  left: circle.circleXPosition(validXPosition),
+                                  bottom:
+                                      circle.circleYPosition(validYPosition),
+                                  child: Icon(MdiIcons.circle,
+                                      size: 70,
+                                      color: circle.colorCircle(valid)),
+                                )
+                              ],
+                            )
+                          ])),
                       Container(
                         width: 700,
                         height: 100,
@@ -113,52 +158,37 @@ class _HomeState extends State<GeneratedImagePage> {
               },
             ),
             Divider(),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton(
-                      style: elevatedButtonstyle,
-                      onPressed: _changeColor,
-                      child: Text(
-                        'Vai!',
-                        style: TextStyle(fontSize: 25),
-                      ),
-                    ),
-                    ElevatedButton(
-                      style: elevatedButtonstyle,
-                      onPressed: _reset,
-                      child: Text(
-                        'Reset!',
-                        style: TextStyle(fontSize: 25),
-                      ),
-                    )
-                  ]),
+            title("Color"),
+            buttonRow1(_changeColor, _lockColor, _resetColor),
+            Divider(color: Colors.white),
+            title("Position"),
+            Column(
+              children: [
+                subtitle(" X Axis"),
+                buttonRow2(_changeXPosition, _lockXPostion, _resetXPosition)
+              ],
+            ),
+            Column(
+              children: [
+                subtitle(" Y Axis"),
+                buttonRow3(_changeYPosition, _lockYPostion, _resetYPosition)
+              ],
             ),
             Padding(
               padding: EdgeInsets.only(top: 20),
               child: ElevatedButton(
                 style: elevatedButtonstyle,
                 child: Text(
-                  'Caputure',
+                  'Save Image',
                   style: TextStyle(fontSize: 25),
                 ),
                 onPressed: () async {
-                  // final bytes1 = await Utils.capture(key1);
-                  setState(() {
-                    this.bytes1 = bytes1;
-                  });
+                  captureImage(key1);
                 },
               ),
             ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                "Image",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              ),
-            ),
+            Divider(color: Colors.white),
+            title("Generated Image"),
             buildImage(bytes1),
             Padding(
               padding: EdgeInsets.only(top: 20),
@@ -169,7 +199,7 @@ class _HomeState extends State<GeneratedImagePage> {
                   style: TextStyle(fontSize: 25),
                 ),
                 onPressed: () async {
-                  print(bytes1);
+                  _saveScreenshot(bytes1);
                 },
               ),
             ),
@@ -177,6 +207,32 @@ class _HomeState extends State<GeneratedImagePage> {
         ),
       ),
     );
+  }
+
+  Future<void> captureImage(key1) async {
+    final bytes1 = await Capture.capture(key1);
+    setState(() {
+      this.bytes1 = bytes1;
+    });
+  }
+
+  Future<void> _saveScreenshot(pngBytes) async {
+    try {
+      //extract bytes
+
+      //create file
+      final String dir = (await getApplicationDocumentsDirectory()).path;
+      final String fullPath = '$dir/${DateTime.now().millisecond}.png';
+      File capturedFile = File(fullPath);
+      await capturedFile.writeAsBytes(pngBytes);
+      print(capturedFile.path);
+
+      await GallerySaver.saveImage(capturedFile.path).then((value) {
+        setState(() {});
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 
   Widget buildImage(Uint8List bytes1) =>
