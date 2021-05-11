@@ -19,6 +19,9 @@ import 'components/titles_and_buttons.dart';
 import 'components/widget_to_image.dart';
 
 class GeneratedImagePage extends StatefulWidget {
+  Brand qualities;
+  GeneratedImagePage({this.qualities});
+
   @override
   _HomeState createState() => _HomeState();
 }
@@ -30,13 +33,7 @@ class _HomeState extends State<GeneratedImagePage> {
   Square square = new Square();
   SquareRounded squareRounded = new SquareRounded();
   Circle circle = new Circle();
-  Brand brand = Brand(
-    cidadania: true,
-    confianca: false,
-    dignidade: false,
-    empoderamento: true,
-    transformacao: true,
-  );
+  Brand brand;
 
   void _changeColor() {
     valid = 1;

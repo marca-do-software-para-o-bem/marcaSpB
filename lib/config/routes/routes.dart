@@ -12,5 +12,7 @@ Map<String, WidgetBuilder> routes = {
   '/profile': (context) => ProfilePage(),
   '/login': (context) => LoginPage(),
   '/questionary': (context) => QuestionaryPage(),
-  '/generate': (context) => GeneratedImagePage(),
+  '/generate': (context) => GeneratedImagePage(
+        qualities: ModalRoute.of(context).settings.arguments,
+      ),
 };

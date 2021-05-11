@@ -36,7 +36,7 @@ class QuestionaryPage extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      'Selecione 3 ou mais das caracteristicas apresentadas que mais representa sua empresa:',
+                      'Selecione 3 ou mais das caracteristicas apresentadas que melhor represente sua empresa:',
                       style: TextStyle(fontSize: 20),
                     ),
                     SizedBox(height: 20),
@@ -125,37 +125,28 @@ class QuestionaryPage extends StatelessWidget {
                           ),
                         ),
                         onTap: () {
-                          List values = [
-                            state.qualities.cidadania,
-                            state.qualities.confianca,
-                            state.qualities.dignidade,
-                            state.qualities.empoderamento,
-                            state.qualities.transformacao,
-                          ];
-                          var counter =
-                              values.where((element) => element == true).length;
+                          int counter = _validateQualities(state.qualities);
 
                           if (counter >= 3) {
-                            print(
-                                'Valor da dignidade é:${state.qualities.dignidade}');
-                            print(
-                                'Valor da confianca é:${state.qualities.confianca}');
+                            Navigator.pushNamed(context, '/generated',
+                                arguments: state.qualities);
                           } else {
                             showDialog(
-                                context: context,
-                                builder: (_) => AlertDialog(
-                                      title: new Text("Erro"),
-                                      content: new Text(
-                                          "Você selecionou menos que 3 caracteristicas"),
-                                      actions: <Widget>[
-                                        FlatButton(
-                                          child: Text('Fechar'),
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                        )
-                                      ],
-                                    ));
+                              context: context,
+                              builder: (_) => AlertDialog(
+                                title: new Text("Erro"),
+                                content: new Text(
+                                    "Você selecionou menos que 3 caracteristicas"),
+                                actions: <Widget>[
+                                  TextButton(
+                                    child: Text('Fechar'),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  )
+                                ],
+                              ),
+                            );
                           }
                         },
                       ),
@@ -176,4 +167,17 @@ Widget _getAppBar() {
     centerTitle: true,
     backgroundColor: Colors.red,
   );
+}
+
+int _validateQualities(Brand brand) {
+  List values = [
+    brand.cidadania,
+    brand.confianca,
+    brand.dignidade,
+    brand.empoderamento,
+    brand.transformacao,
+  ];
+
+  var counter = values.where((element) => element == true).length;
+  return counter;
 }
