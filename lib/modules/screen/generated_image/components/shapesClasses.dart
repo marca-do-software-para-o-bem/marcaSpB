@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 Random random = new Random();
 
@@ -32,11 +33,19 @@ class Square {
     if (valid == 0) {
       return 0;
     } else if (valid == 1) {
-      y = random.nextInt(40).toDouble();
+      y = random.nextInt(15).toDouble();
       return y;
     } else {
       return y;
     }
+  }
+
+  Widget generateSquare(int valid, int validXPosition, int validYPosition) {
+    return Positioned(
+      left: this.squareXPosition(validXPosition),
+      bottom: this.squareYPosition(validYPosition),
+      child: Icon(MdiIcons.square, size: 60, color: this.colorSquare(valid)),
+    );
   }
 }
 
@@ -69,11 +78,21 @@ class SquareRounded {
     if (valid == 0) {
       return 0;
     } else if (valid == 1) {
-      y = random.nextInt(40).toDouble();
+      y = random.nextInt(15).toDouble();
       return y;
     } else {
       return y;
     }
+  }
+
+  Widget generateSquareRounded(
+      int valid, int validXPosition, int validYPosition) {
+    return Positioned(
+      left: this.squareRoundedXPosition(validXPosition),
+      bottom: this.squareRoundedYPosition(validYPosition),
+      child: Icon(MdiIcons.squareRounded,
+          size: 60, color: this.colorSquareRounded(valid)),
+    );
   }
 }
 
@@ -106,11 +125,19 @@ class Circle {
     if (valid == 0) {
       return 0;
     } else if (valid == 1) {
-      y = random.nextInt(40).toDouble();
+      y = random.nextInt(15).toDouble();
       return y;
     } else {
       return y;
     }
+  }
+
+  Widget generateCircle(int valid, int validXPosition, int validYPosition) {
+    return Positioned(
+      left: this.circleXPosition(validXPosition),
+      bottom: this.circleYPosition(validYPosition),
+      child: Icon(MdiIcons.circle, size: 60, color: this.colorCircle(valid)),
+    );
   }
 }
 
