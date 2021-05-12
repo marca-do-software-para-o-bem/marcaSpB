@@ -50,18 +50,44 @@ class QuestionaryPageBloc extends Bloc<QuestionaryPageEvent, QuestionaryState> {
       } catch (error) {
         yield state;
       }
+    } else if (event is QuestionaryPageUpdateSolidezIndex) {
+      try {
+        yield LoadingState();
+        yield* _updatingSolidezIndexToState(event);
+      } catch (error) {
+        yield state;
+      }
+    } else if (event is QuestionaryPageUpdateTransformacaoIndex) {
+      try {
+        yield LoadingState();
+        yield* _updatingTransformacaoIndexToState(event);
+      } catch (error) {
+        yield state;
+      }
+    } else if (event is QuestionaryPageUpdateUniaoIndex) {
+      try {
+        yield LoadingState();
+        yield* _updatingUniaoIndexToState(event);
+      } catch (error) {
+        yield state;
+      }
     }
   }
 
   Stream<QuestionaryState> _mapBrandLoadedToState() async* {
     try {
-      var marca = await Future.delayed(Duration(seconds: 3), () {
+      var marca = await Future.delayed(Duration(seconds: 0), () {
         Brand marca = Brand(
-            cidadania: false,
-            confianca: false,
-            dignidade: false,
-            empoderamento: false,
-            transformacao: false);
+          cidadania: false,
+          confianca: false,
+          dignidade: false,
+          empoderamento: false,
+          transformacao: false,
+          solidezIndex: false,
+          transformacaoIndex: false,
+          uniaoIndex: false,
+          index: 0,
+        );
 
         return marca;
       });
@@ -120,6 +146,42 @@ class QuestionaryPageBloc extends Bloc<QuestionaryPageEvent, QuestionaryState> {
     try {
       Brand marca = event.cidadania;
       marca.cidadania = !marca.cidadania;
+      yield LoadedSucessState(marca);
+    } catch (error) {
+      yield ErrorState('Cannot Change Brand Qualities');
+    }
+  }
+
+  Stream<QuestionaryState> _updatingSolidezIndexToState(
+      QuestionaryPageUpdateSolidezIndex event) async* {
+    try {
+      Brand marca = event.solidezIndex;
+      marca.solidezIndex = !marca.solidezIndex;
+      marca.index = 2;
+      yield LoadedSucessState(marca);
+    } catch (error) {
+      yield ErrorState('Cannot Change Brand Qualities');
+    }
+  }
+
+  Stream<QuestionaryState> _updatingTransformacaoIndexToState(
+      QuestionaryPageUpdateTransformacaoIndex event) async* {
+    try {
+      Brand marca = event.transformacaoIndex;
+      marca.transformacaoIndex = !marca.transformacaoIndex;
+      marca.index = 1;
+      yield LoadedSucessState(marca);
+    } catch (error) {
+      yield ErrorState('Cannot Change Brand Qualities');
+    }
+  }
+
+  Stream<QuestionaryState> _updatingUniaoIndexToState(
+      QuestionaryPageUpdateUniaoIndex event) async* {
+    try {
+      Brand marca = event.uniaoIndex;
+      marca.uniaoIndex = !marca.uniaoIndex;
+      marca.index = 0;
       yield LoadedSucessState(marca);
     } catch (error) {
       yield ErrorState('Cannot Change Brand Qualities');

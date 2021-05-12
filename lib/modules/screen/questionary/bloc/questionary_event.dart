@@ -41,6 +41,24 @@ class QuestionaryPageUpdateCidadania extends QuestionaryPageEvent {
 }
 
 @immutable
+class QuestionaryPageUpdateSolidezIndex extends QuestionaryPageEvent {
+  final Brand solidezIndex;
+  const QuestionaryPageUpdateSolidezIndex(this.solidezIndex);
+}
+
+@immutable
+class QuestionaryPageUpdateTransformacaoIndex extends QuestionaryPageEvent {
+  final Brand transformacaoIndex;
+  const QuestionaryPageUpdateTransformacaoIndex(this.transformacaoIndex);
+}
+
+@immutable
+class QuestionaryPageUpdateUniaoIndex extends QuestionaryPageEvent {
+  final Brand uniaoIndex;
+  const QuestionaryPageUpdateUniaoIndex(this.uniaoIndex);
+}
+
+@immutable
 class QuestionaryPageError extends QuestionaryPageEvent {
   final String message;
   const QuestionaryPageError(this.message);

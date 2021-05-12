@@ -14,7 +14,8 @@ import 'components/SpBIcons.dart';
 import 'components/widget_to_image.dart';
 
 class GeneratedImagePage extends StatefulWidget {
-  Brand qualities;
+  final Brand qualities;
+
   GeneratedImagePage({this.qualities});
 
   @override
@@ -137,8 +138,14 @@ class _HomeState extends State<GeneratedImagePage> {
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                            spBIcons.spbIconsRow(valid, validXPosition,
-                                validYPosition, zIndex, validZPosition)
+                            spBIcons.spbIconsRow(
+                              valid,
+                              validXPosition,
+                              validYPosition,
+                              zIndex,
+                              validZPosition,
+                              widget.qualities,
+                            )
                           ])),
                       Padding(
                         padding: EdgeInsets.only(right: 50),

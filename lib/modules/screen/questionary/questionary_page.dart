@@ -5,8 +5,6 @@ import 'package:marca_spb/models/brand.dart';
 import 'package:marca_spb/modules/screen/questionary/bloc/questionary_bloc.dart';
 import 'package:marca_spb/modules/screen/questionary/bloc/questionary_event.dart';
 import 'package:marca_spb/modules/screen/questionary/bloc/questionary_state.dart';
-import 'package:marca_spb/modules/screen/questionary/components/switch_quality.dart';
-import 'package:marca_spb/modules/screen/user_profile/bloc/profile_bloc.dart';
 import 'package:marca_spb/modules/screen/user_profile/components/circular_loading.dart';
 
 const String _APPBARTITLE = 'Profile';
@@ -31,127 +29,196 @@ class QuestionaryPage extends StatelessWidget {
               appBar: AppBar(
                 title: Text('Questionario'),
               ),
-              body: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    Text(
-                      'Selecione 3 ou mais das caracteristicas apresentadas que melhor represente sua empresa:',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(25, 10, 0, 0),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Switch(
-                                value: state.qualities.dignidade,
-                                onChanged: (value) {
-                                  _bloc.add(QuestionaryPageUpdateDignidade(
-                                      state.qualities));
-                                },
-                              ),
-                              Text('Dignidade'),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Switch(
-                                value: state.qualities.confianca,
-                                onChanged: (value) {
-                                  _bloc.add(QuestionaryPageUpdateConfianca(
-                                      state.qualities));
-                                },
-                              ),
-                              Text('Confiança')
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Switch(
-                                value: state.qualities.empoderamento,
-                                onChanged: (value) {
-                                  _bloc.add(QuestionaryPageUpdateEmpoderamento(
-                                      state.qualities));
-                                },
-                              ),
-                              Text('Empoderamento')
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Switch(
-                                value: state.qualities.transformacao,
-                                onChanged: (value) {
-                                  _bloc.add(QuestionaryPageUpdateTransformacao(
-                                      state.qualities));
-                                },
-                              ),
-                              Text('Transformação')
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Switch(
-                                value: state.qualities.cidadania,
-                                onChanged: (value) {
-                                  _bloc.add(QuestionaryPageUpdateCidadania(
-                                      state.qualities));
-                                },
-                              ),
-                              Text('Cidadania')
-                            ],
-                          ),
-                        ],
+              body: SingleChildScrollView(
+                child: Container(
+                  height: 800,
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      Text(
+                        'Selecione uma ou mais das caracteristicas abaixo, das quais você vê no seu projeto:',
+                        style: TextStyle(fontSize: 20),
                       ),
-                    ),
-                    Spacer(),
-                    Card(
-                      color: Colors.blue,
-                      child: InkWell(
-                        child: Container(
-                          height: MediaQuery.of(context).size.height * .08,
-                          width: double.infinity,
-                          child: Align(
-                            child: Text(
-                              'Gerar imagem',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold),
+                      SizedBox(height: 10),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(25, 10, 0, 0),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Switch(
+                                  value: state.qualities.confianca,
+                                  onChanged: (value) {
+                                    _bloc.add(QuestionaryPageUpdateConfianca(
+                                        state.qualities));
+                                  },
+                                ),
+                                Text('Confiança')
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Switch(
+                                  value: state.qualities.cidadania,
+                                  onChanged: (value) {
+                                    _bloc.add(QuestionaryPageUpdateCidadania(
+                                        state.qualities));
+                                  },
+                                ),
+                                Text('Cidadania')
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        'Selecione uma ou mais das caracteristicas abaixo, das quais você gostaria que as pessoas vissem no seu projeto:',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(25, 10, 0, 0),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Switch(
+                                  value: state.qualities.dignidade,
+                                  onChanged: (value) {
+                                    _bloc.add(QuestionaryPageUpdateDignidade(
+                                        state.qualities));
+                                  },
+                                ),
+                                Text('Dignidade'),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Switch(
+                                  value: state.qualities.empoderamento,
+                                  onChanged: (value) {
+                                    _bloc.add(
+                                        QuestionaryPageUpdateEmpoderamento(
+                                            state.qualities));
+                                  },
+                                ),
+                                Text('Empoderamento')
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Switch(
+                                  value: state.qualities.transformacao,
+                                  onChanged: (value) {
+                                    _bloc.add(
+                                        QuestionaryPageUpdateTransformacao(
+                                            state.qualities));
+                                  },
+                                ),
+                                Text('Transformação')
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        'Selecione a caracteristica que define o time do seu projeto:',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(25, 10, 0, 0),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Switch(
+                                  value: state.qualities.solidezIndex,
+                                  onChanged: (value) {
+                                    _bloc.add(QuestionaryPageUpdateSolidezIndex(
+                                        state.qualities));
+                                  },
+                                ),
+                                Text('Solidez'),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Switch(
+                                  value: state.qualities.transformacaoIndex,
+                                  onChanged: (value) {
+                                    _bloc.add(
+                                        QuestionaryPageUpdateTransformacaoIndex(
+                                            state.qualities));
+                                  },
+                                ),
+                                Text('Transformação')
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Switch(
+                                  value: state.qualities.uniaoIndex,
+                                  onChanged: (value) {
+                                    _bloc.add(QuestionaryPageUpdateUniaoIndex(
+                                        state.qualities));
+                                  },
+                                ),
+                                Text('União')
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      Spacer(),
+                      Card(
+                        color: Colors.blue,
+                        child: InkWell(
+                          child: Container(
+                            height: MediaQuery.of(context).size.height * .08,
+                            width: double.infinity,
+                            child: Align(
+                              child: Text(
+                                'Gerar imagem',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ),
                           ),
-                        ),
-                        onTap: () {
-                          int counter = _validateQualities(state.qualities);
+                          onTap: () {
+                            int counterSquare =
+                                _validateSquareQualities(state.qualities);
+                            int counterCircle =
+                                _validateCircleQualities(state.qualities);
 
-                          if (counter >= 3) {
-                            Navigator.pushNamed(context, '/generated',
-                                arguments: state.qualities);
-                          } else {
-                            showDialog(
-                              context: context,
-                              builder: (_) => AlertDialog(
-                                title: new Text("Erro"),
-                                content: new Text(
-                                    "Você selecionou menos que 3 caracteristicas"),
-                                actions: <Widget>[
-                                  TextButton(
-                                    child: Text('Fechar'),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  )
-                                ],
-                              ),
-                            );
-                          }
-                        },
+                            if (counterSquare >= 1 && counterCircle >= 1) {
+                              Navigator.pushNamed(context, '/generate',
+                                  arguments: state.qualities);
+                            } else {
+                              showDialog(
+                                context: context,
+                                builder: (_) => AlertDialog(
+                                  title: new Text("Resposta Inválida"),
+                                  content: new Text(
+                                      "Você deixou uma das questões sem responder. Volte e responda corretamente o questionário."),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: Text('Fechar'),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    )
+                                  ],
+                                ),
+                              );
+                            }
+                          },
+                        ),
                       ),
-                    )
-                  ],
+                    ],
+                  ),
                 ),
               ),
             );
@@ -169,15 +236,23 @@ Widget _getAppBar() {
   );
 }
 
-int _validateQualities(Brand brand) {
-  List values = [
+int _validateSquareQualities(Brand brand) {
+  List squareValues = [
     brand.cidadania,
     brand.confianca,
+  ];
+
+  var counterSquare = squareValues.where((element) => element == true).length;
+  return counterSquare;
+}
+
+int _validateCircleQualities(Brand brand) {
+  List circleValues = [
     brand.dignidade,
     brand.empoderamento,
     brand.transformacao,
   ];
 
-  var counter = values.where((element) => element == true).length;
-  return counter;
+  var counterCircle = circleValues.where((element) => element == true).length;
+  return counterCircle;
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marca_spb/models/brand.dart';
 import 'package:marca_spb/modules/screen/generated_image/components/shapesClasses.dart';
 
 class SpBIcons {
@@ -7,7 +8,7 @@ class SpBIcons {
   Circle circle = new Circle();
   int x;
   Widget spbIconsRow(int valid, int validXPosition, int validYPosition,
-      int zIndex, int validZPosition) {
+      int zIndex, int validZPosition, Brand qualities) {
     if (validZPosition == 1) {
       x = random.nextInt(3);
       zIndex = x;
@@ -24,10 +25,12 @@ class SpBIcons {
             width: 300,
             height: 60,
           ),
-          square.generateSquare(valid, validXPosition, validYPosition),
+          square.generateSquare(
+              valid, validXPosition, validYPosition, qualities),
           squareRounded.generateSquareRounded(
-              valid, validXPosition, validYPosition),
-          circle.generateCircle(valid, validXPosition, validYPosition)
+              valid, validXPosition, validYPosition, qualities),
+          circle.generateCircle(
+              valid, validXPosition, validYPosition, qualities)
         ],
       );
     } else if (zIndex == 1) {
@@ -38,10 +41,12 @@ class SpBIcons {
             width: 300,
             height: 60,
           ),
-          square.generateSquare(valid, validXPosition, validYPosition),
-          circle.generateCircle(valid, validXPosition, validYPosition),
+          square.generateSquare(
+              valid, validXPosition, validYPosition, qualities),
+          circle.generateCircle(
+              valid, validXPosition, validYPosition, qualities),
           squareRounded.generateSquareRounded(
-              valid, validXPosition, validYPosition),
+              valid, validXPosition, validYPosition, qualities),
         ],
       );
     } else if (zIndex == 2) {
@@ -53,9 +58,11 @@ class SpBIcons {
             height: 60,
           ),
           squareRounded.generateSquareRounded(
-              valid, validXPosition, validYPosition),
-          circle.generateCircle(valid, validXPosition, validYPosition),
-          square.generateSquare(valid, validXPosition, validYPosition),
+              valid, validXPosition, validYPosition, qualities),
+          circle.generateCircle(
+              valid, validXPosition, validYPosition, qualities),
+          square.generateSquare(
+              valid, validXPosition, validYPosition, qualities),
         ],
       );
     }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:marca_spb/models/brand.dart';
+import 'package:marca_spb/utils/services/color_generator.dart';
 import 'dart:math';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -7,11 +9,11 @@ Random random = new Random();
 class Square {
   Color cor;
   double x, y;
-  Color colorSquare(valid) {
+  Color colorSquare(valid, qualities) {
     if (valid == 0) {
-      return Color.fromARGB(255, 0, 175, 228);
+      return ColorGenerator.getSquareColor(qualities);
     } else if (valid == 1) {
-      cor = UniqueColorGenerator.getColor();
+      cor = ColorGenerator.getSquareColor(qualities);
       return cor;
     } else {
       return cor;
@@ -40,11 +42,13 @@ class Square {
     }
   }
 
-  Widget generateSquare(int valid, int validXPosition, int validYPosition) {
+  Widget generateSquare(
+      int valid, int validXPosition, int validYPosition, Brand qualities) {
     return Positioned(
       left: this.squareXPosition(validXPosition),
       bottom: this.squareYPosition(validYPosition),
-      child: Icon(MdiIcons.square, size: 60, color: this.colorSquare(valid)),
+      child: Icon(MdiIcons.square,
+          size: 60, color: this.colorSquare(valid, qualities)),
     );
   }
 }
@@ -52,11 +56,11 @@ class Square {
 class SquareRounded {
   Color cor;
   double x, y;
-  Color colorSquareRounded(valid) {
+  Color colorSquareRounded(valid, qualities) {
     if (valid == 0) {
-      return Color.fromARGB(255, 233, 66, 130);
+      return ColorGenerator.getSquareRoundedColor();
     } else if (valid == 1) {
-      cor = UniqueColorGenerator.getColor();
+      cor = ColorGenerator.getSquareRoundedColor();
       return cor;
     } else {
       return cor;
@@ -86,12 +90,12 @@ class SquareRounded {
   }
 
   Widget generateSquareRounded(
-      int valid, int validXPosition, int validYPosition) {
+      int valid, int validXPosition, int validYPosition, Brand qualities) {
     return Positioned(
       left: this.squareRoundedXPosition(validXPosition),
       bottom: this.squareRoundedYPosition(validYPosition),
       child: Icon(MdiIcons.squareRounded,
-          size: 60, color: this.colorSquareRounded(valid)),
+          size: 60, color: this.colorSquareRounded(valid, qualities)),
     );
   }
 }
@@ -99,11 +103,11 @@ class SquareRounded {
 class Circle {
   Color cor;
   double x, y;
-  Color colorCircle(valid) {
+  Color colorCircle(valid, qualities) {
     if (valid == 0) {
-      return Color.fromARGB(255, 149, 193, 31);
+      return ColorGenerator.getCircleColor(qualities);
     } else if (valid == 1) {
-      cor = UniqueColorGenerator.getColor();
+      cor = ColorGenerator.getCircleColor(qualities);
       return cor;
     } else {
       return cor;
@@ -132,36 +136,38 @@ class Circle {
     }
   }
 
-  Widget generateCircle(int valid, int validXPosition, int validYPosition) {
+  Widget generateCircle(
+      int valid, int validXPosition, int validYPosition, Brand qualities) {
     return Positioned(
       left: this.circleXPosition(validXPosition),
       bottom: this.circleYPosition(validYPosition),
-      child: Icon(MdiIcons.circle, size: 60, color: this.colorCircle(valid)),
+      child: Icon(MdiIcons.circle,
+          size: 60, color: this.colorCircle(valid, qualities)),
     );
   }
 }
 
-class UniqueColorGenerator {
-  static Random random = new Random();
+// class UniqueColorGenerator {
+//   static Random random = new Random();
 
-  static Color getColor() {
-    List<Color> paleta = [
-      Color.fromARGB(255, 78, 66, 79),
-      Color.fromARGB(255, 139, 139, 137),
-      Color.fromARGB(255, 196, 75, 53),
-      Color.fromARGB(255, 225, 112, 44),
-      Color.fromARGB(255, 237, 181, 12),
-      Color.fromARGB(255, 100, 19, 17),
-      Color.fromARGB(255, 164, 66, 115),
-      Color.fromARGB(255, 233, 66, 130),
-      Color.fromARGB(255, 54, 44, 65),
-      Color.fromARGB(255, 98, 61, 96),
-      Color.fromARGB(255, 4, 119, 161),
-      Color.fromARGB(255, 37, 156, 194),
-      Color.fromARGB(255, 0, 175, 228),
-      Color.fromARGB(255, 38, 104, 52),
-      Color.fromARGB(255, 149, 193, 31),
-    ];
-    return paleta[random.nextInt(paleta.length)];
-  }
-}
+//   static Color getColor() {
+//     List<Color> paleta = [
+//       Color.fromARGB(255, 78, 66, 79),
+//       Color.fromARGB(255, 139, 139, 137),
+//       Color.fromARGB(255, 196, 75, 53),
+//       Color.fromARGB(255, 225, 112, 44),
+//       Color.fromARGB(255, 237, 181, 12),
+//       Color.fromARGB(255, 100, 19, 17),
+//       Color.fromARGB(255, 164, 66, 115),
+//       Color.fromARGB(255, 233, 66, 130),
+//       Color.fromARGB(255, 54, 44, 65),
+//       Color.fromARGB(255, 98, 61, 96),
+//       Color.fromARGB(255, 4, 119, 161),
+//       Color.fromARGB(255, 37, 156, 194),
+//       Color.fromARGB(255, 0, 175, 228),
+//       Color.fromARGB(255, 38, 104, 52),
+//       Color.fromARGB(255, 149, 193, 31),
+//     ];
+//     return paleta[random.nextInt(paleta.length)];
+//   }
+// }

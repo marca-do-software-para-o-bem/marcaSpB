@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:marca_spb/models/brand.dart';
 
-class UniqueColorGenerator {
+class ColorGenerator {
   static Random random = new Random();
 
   static Color getSquareColor(Brand brand) {
