@@ -39,7 +39,7 @@ class UserRepositoryImpl implements UserRepository {
           headers: API_HEADERS,
           body: jsonEncode({
             'first_name': '00000',
-            'username': faker.internet.userName(),
+            'username': user.email,
             'email': user.email,
             'account': {'cep': '00000', 'endereco': '00000', 'cnpj': '00000'},
             'password': user.password

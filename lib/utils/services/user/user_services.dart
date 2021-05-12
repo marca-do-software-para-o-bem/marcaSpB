@@ -1,13 +1,15 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
+import 'package:marca_spb/constants/api_path.dart';
 import 'package:marca_spb/models/user.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../rest_api_service.dart';
 
 // Lembrar de usar o Ngrok para usar https
 // Lembrar de add no ALLOWED_USERS no BD
-const String URL_BASE_AUTHORITY = '9a81d5323ded.ngrok.io';
+const String URL_BASE_AUTHORITY = '3ec90c8e2ce9.ngrok.io/';
 const String URL_ENCODED_PATH = 'usuario';
 
 const Map<String, String> API_USER_HEADERS = {
@@ -64,13 +66,13 @@ class UserServices {
         body: userJson,
       );
       var data = User.fromJson(jsonDecode(response.body));
-      print(data);
       return data;
     } catch (e) {
       throw Exception('Failed to create user $e');
     }
   }
 
+  
   //TODO
   //Fazer update
 

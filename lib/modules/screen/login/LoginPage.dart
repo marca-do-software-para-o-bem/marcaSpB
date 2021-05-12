@@ -4,11 +4,15 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_login/flutter_login.dart';
+import 'package:http/http.dart';
+import 'package:marca_spb/constants/api_path.dart';
 import 'package:marca_spb/modules/screen/login/bloc/signup_bloc.dart';
 import 'package:marca_spb/models/user.dart';
+import 'package:marca_spb/utils/services/login/login_services.dart';
 import 'package:marca_spb/utils/services/user/user_repository.dart';
 import 'package:marca_spb/modules/screen/HomePage.dart';
 import 'package:marca_spb/config/routes/routes.dart';
+import 'package:marca_spb/utils/services/user/user_services.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key}) : super(key: key);
@@ -19,6 +23,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   UserBloc userBloc = UserBloc(UserRepositoryImpl());
+  LoginServices loginServices = LoginServices();
 
   @override
   void initState() {
@@ -28,27 +33,30 @@ class _LoginPageState extends State<LoginPage> {
 
   Duration get loginTime => Duration(milliseconds: 2250);
 
-  Future<String> _authUser(LoginData data) {
-    final state = BlocProvider.of<UserBloc>(context).state;
-    final user = List.from((state as LoadedSucessState).users)
-        .firstWhere((u) => u.email == data.name);
+  Future<String> _authUser(LoginData data) async {
+    final login =
+        await loginServices.login(username: data.name, password: data.password);
 
     return Future.delayed(loginTime).then((_) {
-      if (user == null) {
-        return 'Email not exists';
+      if (login != 'success') {
+        return 'Login Failed';
       }
-      /* else if (u[data.name] != data.password) {
-          return 'Password does not match';
-        } */
-
       return null;
-    });
+    }).catchError(handleError);
   }
 
-  Future<String> _signupUser(LoginData data) {
+  handleError(e) {
+    print('Error: ${e.toString()}');
+  }
+
+  Future<String> _signupUser(LoginData data) async {
     User user = User();
     user.email = data.name;
     user.password = data.password;
+    var url = Uri.parse(API_URL_BASE + 'usuario/');
+    final response = await get(url);
+    print(response.statusCode);
+
     BlocProvider.of<UserBloc>(context).add(CreateUserEvent(user));
   }
 
