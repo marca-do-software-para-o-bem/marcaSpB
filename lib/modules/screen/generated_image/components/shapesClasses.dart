@@ -7,11 +7,10 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 Random random = new Random();
 
 class Square {
-  Color cor;
+  Color cor, corInicial;
   double x, y;
   Color colorSquare(valid, qualities) {
-    Color corInicial;
-    if (valid == 3) {
+    if (valid == 10) {
       corInicial = ColorGenerator.getSquareColor(qualities);
       return corInicial;
     } else if (valid == 1) {
@@ -58,14 +57,19 @@ class Square {
 }
 
 class SquareRounded {
-  Color cor;
+  Color cor, corInicial;
   double x, y;
   Color colorSquareRounded(valid, qualities) {
-    if (valid == 0) {
-      return ColorGenerator.getSquareRoundedColor();
+    if (valid == 10) {
+      corInicial = ColorGenerator.getSquareRoundedColor();
+
+      return corInicial;
     } else if (valid == 1) {
       cor = ColorGenerator.getSquareRoundedColor();
       return cor;
+    } else if (valid == 0) {
+      cor = ColorGenerator.getSquareRoundedColor();
+      return corInicial;
     } else {
       return cor;
     }
@@ -74,6 +78,9 @@ class SquareRounded {
   double squareRoundedXPosition(valid) {
     if (valid == 0) {
       return 80.0;
+    } else if (valid == 1) {
+      x = random.nextInt(200).toDouble();
+      return x;
     } else if (valid == 1) {
       x = random.nextInt(200).toDouble();
       return x;
@@ -105,11 +112,14 @@ class SquareRounded {
 }
 
 class Circle {
-  Color cor;
+  Color cor, corInicial;
   double x, y;
   Color colorCircle(valid, qualities) {
-    if (valid == 0) {
-      return ColorGenerator.getCircleColor(qualities);
+    if (valid == 10) {
+      corInicial = ColorGenerator.getSquareRoundedColor();
+      return corInicial;
+    } else if (valid == 0) {
+      return corInicial;
     } else if (valid == 1) {
       cor = ColorGenerator.getCircleColor(qualities);
       return cor;
