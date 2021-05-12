@@ -17,8 +17,7 @@ class LoginServices {
       );
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
-        storage.write(key: 'refresh', value: data[0]);
-        storage.write(key: 'access', value: data[1]);
+        data.forEach((key, value) => {storage.write(key: key, value: value)});
         return 'success';
       } else {
         return 'failed';

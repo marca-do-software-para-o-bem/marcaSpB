@@ -17,6 +17,7 @@ const Map<String, String> API_USER_HEADERS = {
 };
 
 class UserServices {
+  final storage = new FlutterSecureStorage();
   Future<List<User>> getAllUsers() async {
     try {
       final Response response = await client
@@ -41,9 +42,13 @@ class UserServices {
 
   Future<User> getUser(int id) async {
     try {
+      String access = await storage.read(key: 'access');
       final Response response = await client
-          .get(Uri.https(URL_BASE_AUTHORITY, '$URL_ENCODED_PATH/$id'))
-          .timeout(Duration(seconds: 10));
+          .get(Uri.parse(API_URL_BASE + URL_ENCODED_PATH + '/$id'), headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $access',
+      }).timeout(Duration(seconds: 10));
 
       if (response.statusCode == 200) {
         User user = User.fromJson(jsonDecode(response.body));
@@ -72,7 +77,6 @@ class UserServices {
     }
   }
 
-  
   //TODO
   //Fazer update
 

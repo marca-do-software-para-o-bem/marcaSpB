@@ -40,18 +40,16 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
   Stream<UserState> _mapUserAddedToState(CreateUserEvent event) async* {
     try {
-      if (state is LoadedSucessState) {
-        var newUser = (await this.repository.createUser(event.user));
-        print('new: ');
-        print(newUser);
-        List<User> updatedUsers;
-        if (newUser != null) {
-          updatedUsers = List.from((state as LoadedSucessState).users)
-            ..add(newUser);
-        }
-
-        yield LoadedSucessState(updatedUsers.reversed.toList());
+      var newUser = (await this.repository.createUser(event.user));
+      print('new: ');
+      print(newUser);
+      List<User> updatedUsers;
+      if (newUser != null) {
+        updatedUsers = List.from((state as LoadedSucessState).users)
+          ..add(newUser);
       }
+
+      //yield LoadedSucessState(updatedUsers.reversed.toList());
     } catch (e) {
       yield ErrorState("error Add user");
     }

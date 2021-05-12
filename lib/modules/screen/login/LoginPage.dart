@@ -53,10 +53,6 @@ class _LoginPageState extends State<LoginPage> {
     User user = User();
     user.email = data.name;
     user.password = data.password;
-    var url = Uri.parse(API_URL_BASE + 'usuario/');
-    final response = await get(url);
-    print(response.statusCode);
-
     BlocProvider.of<UserBloc>(context).add(CreateUserEvent(user));
   }
 
