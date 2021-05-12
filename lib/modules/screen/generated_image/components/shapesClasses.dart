@@ -12,6 +12,7 @@ class Square {
   Color colorSquare(valid, qualities) {
     if (valid == 10) {
       corInicial = ColorGenerator.getSquareColor(qualities);
+      cor = corInicial;
       return corInicial;
     } else if (valid == 1) {
       cor = ColorGenerator.getSquareColor(qualities);
@@ -62,7 +63,7 @@ class SquareRounded {
   Color colorSquareRounded(valid, qualities) {
     if (valid == 10) {
       corInicial = ColorGenerator.getSquareRoundedColor();
-
+      cor = corInicial;
       return corInicial;
     } else if (valid == 1) {
       cor = ColorGenerator.getSquareRoundedColor();
@@ -117,6 +118,7 @@ class Circle {
   Color colorCircle(valid, qualities) {
     if (valid == 10) {
       corInicial = ColorGenerator.getSquareRoundedColor();
+      cor = corInicial;
       return corInicial;
     } else if (valid == 0) {
       return corInicial;

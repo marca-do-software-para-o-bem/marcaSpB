@@ -48,6 +48,7 @@ class _HomeState extends State<GeneratedImagePage> {
   }
 
   void _changeXPosition() {
+    valid = 3;
     validXPosition = 1;
     setState(() {});
   }
@@ -62,6 +63,7 @@ class _HomeState extends State<GeneratedImagePage> {
   }
 
   void _changeYPosition() {
+    valid = 3;
     validYPosition = 1;
     setState(() {});
   }
@@ -76,6 +78,7 @@ class _HomeState extends State<GeneratedImagePage> {
   }
 
   void _changeZPosition() {
+    valid = 3;
     validZPosition = 1;
     setState(() {});
   }
