@@ -10,11 +10,15 @@ class Square {
   Color cor;
   double x, y;
   Color colorSquare(valid, qualities) {
-    if (valid == 0) {
-      return ColorGenerator.getSquareColor(qualities);
+    Color corInicial;
+    if (valid == 3) {
+      corInicial = ColorGenerator.getSquareColor(qualities);
+      return corInicial;
     } else if (valid == 1) {
       cor = ColorGenerator.getSquareColor(qualities);
       return cor;
+    } else if (valid == 0) {
+      return corInicial;
     } else {
       return cor;
     }

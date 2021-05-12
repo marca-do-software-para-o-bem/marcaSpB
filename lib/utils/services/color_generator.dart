@@ -5,6 +5,7 @@ import 'package:marca_spb/models/brand.dart';
 
 class ColorGenerator {
   static Random random = new Random();
+  Color square, squarerounded, circle;
 
   static Color getSquareColor(Brand brand) {
     List<Color> paleta = [];

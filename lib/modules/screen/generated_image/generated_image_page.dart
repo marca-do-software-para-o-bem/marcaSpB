@@ -23,7 +23,7 @@ class GeneratedImagePage extends StatefulWidget {
 }
 
 class _HomeState extends State<GeneratedImagePage> {
-  int valid = 0;
+  int valid = 3;
   int validXPosition = 0;
   int validYPosition = 0;
   int validZPosition = 4;
