@@ -125,13 +125,11 @@ class _HomeState extends State<GeneratedImagePage> {
         backgroundColor: Colors.pink,
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            WidgetToImage(
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(40, 10, 0, 0),
+            child: WidgetToImage(
               builder: (key) {
                 this.key1 = key;
                 return Container(
@@ -164,59 +162,73 @@ class _HomeState extends State<GeneratedImagePage> {
                 );
               },
             ),
-            Divider(),
-            title("Color"),
-            buttonRow1(_changeColor, _lockColor, _resetColor),
-            title("Position"),
-            Divider(color: Colors.white),
-            Column(
-              children: [
-                subtitle(" X Axis"),
-                buttonRow2(_changeXPosition, _lockXPostion, _resetXPosition)
-              ],
-            ),
-            Column(
-              children: [
-                subtitle(" Y Axis"),
-                buttonRow3(_changeYPosition, _lockYPostion, _resetYPosition),
-                subtitle("Z Axis"),
-                buttonRow4(_changeZPosition, _lockZPostion, _resetZPosition),
-                subtitle("Geometric shape in front"),
-                zAxisIconsButtons(
-                    _squareInFront, _squareroundedInFront, _circleInFront)
-              ],
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-              child: ElevatedButton(
-                style: elevatedButtonstyle,
-                child: Text(
-                  'Save Image',
-                  style: TextStyle(fontSize: 25),
-                ),
-                onPressed: () async {
-                  captureImage(key1);
-                },
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.fromLTRB(20, 10, 0, 0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Divider(),
+                  title("Color"),
+                  buttonRow1(_changeColor, _lockColor, _resetColor),
+                  title("Position"),
+                  Divider(color: Colors.white),
+                  Column(
+                    children: [
+                      subtitle(" X Axis"),
+                      buttonRow2(
+                          _changeXPosition, _lockXPostion, _resetXPosition)
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      subtitle(" Y Axis"),
+                      buttonRow3(
+                          _changeYPosition, _lockYPostion, _resetYPosition),
+                      subtitle("Z Axis"),
+                      buttonRow4(
+                          _changeZPosition, _lockZPostion, _resetZPosition),
+                      subtitle("Geometric shape in front"),
+                      zAxisIconsButtons(
+                          _squareInFront, _squareroundedInFront, _circleInFront)
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 20),
+                    child: ElevatedButton(
+                      style: elevatedButtonstyle,
+                      child: Text(
+                        'Save Image',
+                        style: TextStyle(fontSize: 25),
+                      ),
+                      onPressed: () async {
+                        captureImage(key1);
+                      },
+                    ),
+                  ),
+                  Divider(color: Colors.white),
+                  title("Generated Image"),
+                  buildImage(bytes1),
+                  Padding(
+                    padding: EdgeInsets.only(top: 20),
+                    child: ElevatedButton(
+                      style: elevatedButtonstyle,
+                      child: Text(
+                        'Save on gallery',
+                        style: TextStyle(fontSize: 25),
+                      ),
+                      onPressed: () async {
+                        _saveScreenshot(bytes1);
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
-            Divider(color: Colors.white),
-            title("Generated Image"),
-            buildImage(bytes1),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-              child: ElevatedButton(
-                style: elevatedButtonstyle,
-                child: Text(
-                  'Save on gallery',
-                  style: TextStyle(fontSize: 25),
-                ),
-                onPressed: () async {
-                  _saveScreenshot(bytes1);
-                },
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
