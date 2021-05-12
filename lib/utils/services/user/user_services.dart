@@ -77,6 +77,39 @@ class UserServices {
     }
   }
 
+  @override
+  Future<User> updateUser(user, id) async {
+    try {
+      if (user != null) {
+        String access = await storage.read(key: 'access');
+        var url = Uri.parse(API_URL_BASE + 'usuario/$id');
+        final response = await post(
+          url,
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $access',
+          },
+          body: jsonEncode({
+            'first_name': user.first_name,
+            'username': user.email,
+            'email': user.email,
+            'account': {'cep': '00000', 'endereco': '00000', 'cnpj': '00000'},
+            'password': user.password
+          }),
+        );
+
+        if (response.statusCode == 200) {
+          return User.fromJson(json.decode(response.body));
+        } else {
+          throw Exception('Failed to update a user');
+        }
+      }
+    } catch (e) {
+      throw Exception('Failed to update a user ' + e.toString());
+    }
+  }
+
   //TODO
   //Fazer update
 

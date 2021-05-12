@@ -56,4 +56,32 @@ class UserRepositoryImpl implements UserRepository {
       throw Exception('Failed to create a user ' + e.toString());
     }
   }
+
+  @override
+  Future<User> updateUser(user) async {
+    try {
+      if (user != null) {
+        var url = Uri.parse(API_URL_BASE + 'usuario/');
+        final response = await post(
+          url,
+          headers: API_HEADERS,
+          body: jsonEncode({
+            'first_name': user.first_name,
+            'username': user.email,
+            'email': user.email,
+            'account': {'cep': '00000', 'endereco': '00000', 'cnpj': '00000'},
+            'password': user.password
+          }),
+        );
+
+        if (response.statusCode == 201) {
+          return User.fromJson(json.decode(response.body));
+        } else {
+          throw Exception('Failed to update a user');
+        }
+      }
+    } catch (e) {
+      throw Exception('Failed to update a user ' + e.toString());
+    }
+  }
 }
