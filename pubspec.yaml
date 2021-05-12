@@ -34,6 +34,8 @@ dependencies:
   gallery_saver: ^2.1.0
   image_picker: ^0.7.4
   flutter_secure_storage: ^4.2.0
+  line_awesome_flutter: ^1.0.1
+
 
 
 
