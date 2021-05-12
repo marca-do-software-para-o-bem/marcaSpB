@@ -34,7 +34,7 @@ class ColorGenerator {
       paleta.add(Color.fromARGB(255, 164, 66, 115));
       paleta.add(Color.fromARGB(255, 233, 66, 130));
     }
-    if (qualities.empoderamento) {
+    if (qualities.transformacao) {
       paleta.add(Color.fromARGB(255, 100, 19, 17));
       paleta.add(Color.fromARGB(255, 54, 44, 65));
       paleta.add(Color.fromARGB(255, 98, 61, 96));

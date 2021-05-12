@@ -26,8 +26,8 @@ class _HomeState extends State<GeneratedImagePage> {
   int valid = 0;
   int validXPosition = 0;
   int validYPosition = 0;
-  int validZPosition = 0;
-  int zIndex = 0;
+  int validZPosition = 4;
+  int zIndex;
   Square square = new Square();
   SquareRounded squareRounded = new SquareRounded();
   Circle circle = new Circle();
@@ -111,6 +111,7 @@ class _HomeState extends State<GeneratedImagePage> {
   Uint8List bytes1;
 
   Widget build(BuildContext context) {
+    zIndex = widget.qualities.index;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(

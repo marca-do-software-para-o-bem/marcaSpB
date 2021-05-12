@@ -135,8 +135,13 @@ class QuestionaryPage extends StatelessWidget {
                                 Switch(
                                   value: state.qualities.solidezIndex,
                                   onChanged: (value) {
-                                    _bloc.add(QuestionaryPageUpdateSolidezIndex(
-                                        state.qualities));
+                                    if (!state.qualities.transformacaoIndex &&
+                                        !state.qualities.uniaoIndex) {
+                                      _bloc.add(
+                                        QuestionaryPageUpdateSolidezIndex(
+                                            state.qualities),
+                                      );
+                                    }
                                   },
                                 ),
                                 Text('Solidez'),
@@ -147,9 +152,13 @@ class QuestionaryPage extends StatelessWidget {
                                 Switch(
                                   value: state.qualities.transformacaoIndex,
                                   onChanged: (value) {
-                                    _bloc.add(
+                                    if (!state.qualities.solidezIndex &&
+                                        !state.qualities.uniaoIndex) {
+                                      _bloc.add(
                                         QuestionaryPageUpdateTransformacaoIndex(
-                                            state.qualities));
+                                            state.qualities),
+                                      );
+                                    }
                                   },
                                 ),
                                 Text('Transformação')
@@ -160,8 +169,13 @@ class QuestionaryPage extends StatelessWidget {
                                 Switch(
                                   value: state.qualities.uniaoIndex,
                                   onChanged: (value) {
-                                    _bloc.add(QuestionaryPageUpdateUniaoIndex(
-                                        state.qualities));
+                                    if (!state.qualities.transformacaoIndex &&
+                                        !state.qualities.solidezIndex) {
+                                      _bloc.add(
+                                        QuestionaryPageUpdateUniaoIndex(
+                                            state.qualities),
+                                      );
+                                    }
                                   },
                                 ),
                                 Text('União')
@@ -192,8 +206,12 @@ class QuestionaryPage extends StatelessWidget {
                                 _validateSquareQualities(state.qualities);
                             int counterCircle =
                                 _validateCircleQualities(state.qualities);
+                            int counterIndex =
+                                _validateIndexQualities(state.qualities);
 
-                            if (counterSquare >= 1 && counterCircle >= 1) {
+                            if (counterSquare >= 1 &&
+                                counterCircle >= 1 &&
+                                counterIndex == 1) {
                               Navigator.pushNamed(context, '/generate',
                                   arguments: state.qualities);
                             } else {
@@ -255,4 +273,15 @@ int _validateCircleQualities(Brand brand) {
 
   var counterCircle = circleValues.where((element) => element == true).length;
   return counterCircle;
+}
+
+int _validateIndexQualities(Brand brand) {
+  List circleValues = [
+    brand.solidezIndex,
+    brand.transformacaoIndex,
+    brand.uniaoIndex,
+  ];
+
+  var counterIndex = circleValues.where((element) => element == true).length;
+  return counterIndex;
 }
