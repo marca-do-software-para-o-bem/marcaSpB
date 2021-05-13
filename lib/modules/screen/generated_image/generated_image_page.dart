@@ -125,7 +125,8 @@ class _HomeState extends State<GeneratedImagePage> {
             color: Color.fromARGB(255, 0, 191, 255),
             size: 35,
           ),
-          Icon(MdiIcons.squareRounded, color: Colors.pink[200], size: 32),
+          Icon(MdiIcons.squareRounded,
+              color: Color.fromARGB(255, 255, 20, 147), size: 32),
           Icon(
             Icons.circle,
             color: Color.fromARGB(255, 149, 193, 31),
@@ -136,7 +137,7 @@ class _HomeState extends State<GeneratedImagePage> {
           "Editor",
           style: TextStyle(color: Colors.white, fontSize: 25),
         ),
-        backgroundColor: Color.fromARGB(255, 255, 20, 147),
+        backgroundColor: Color.fromARGB(255, 255, 105, 180),
       ),
       body: Column(
         children: [

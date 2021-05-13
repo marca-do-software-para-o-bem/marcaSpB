@@ -59,9 +59,9 @@ Widget buttonRow1(Function random, Function lock, Function reset) {
   return Padding(
     padding: EdgeInsets.only(top: 5),
     child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      colorButton("Random!", random, Color.fromARGB(255, 255, 20, 147)),
-      colorButton("Lock!", lock, Color.fromARGB(255, 255, 105, 180)),
-      colorButton("Reset!", reset, Colors.pink[200])
+      colorButton("Random!", random, Color.fromARGB(255, 255, 105, 180)),
+      colorButton("Lock!", lock, Color.fromARGB(255, 255, 193, 204)),
+      colorButton("Reset!", reset, Color.fromARGB(255, 255, 179, 222))
     ]),
   );
 }
@@ -79,21 +79,21 @@ Widget zAxisIconsButtons(Function squareInFront, Function squareRoundedInFront,
                 size: 30,
               ),
               squareInFront,
-              Color.fromARGB(255, 255, 20, 147)),
+              Color.fromARGB(255, 255, 105, 180)),
           zButton(
               Icon(
                 MdiIcons.squareRounded,
                 size: 30,
               ),
               squareRoundedInFront,
-              Color.fromARGB(255, 255, 105, 180)),
+              Color.fromARGB(255, 255, 193, 204)),
           zButton(
               Icon(
                 MdiIcons.circle,
                 size: 30,
               ),
               circleInFront,
-              Colors.pink[200])
+              Color.fromARGB(255, 255, 179, 222))
         ])
       ],
     ),
