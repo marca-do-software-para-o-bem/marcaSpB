@@ -53,6 +53,11 @@ class SideDrawer extends StatelessWidget {
             onTap: () => {Navigator.pushNamed(context, '/menu')},
           ),
           ListTile(
+            leading: Icon(Icons.info),
+            title: Text('O que é o SpB?'),
+            onTap: () => {Navigator.pushNamed(context, '/spb')},
+          ),
+          ListTile(
             leading: Icon(Icons.person),
             title: Text('Perfil'),
             onTap: () => {Navigator.pushNamed(context, '/profile')},
