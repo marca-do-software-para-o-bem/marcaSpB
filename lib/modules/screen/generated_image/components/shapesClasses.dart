@@ -28,7 +28,7 @@ class Square {
     if (valid == 0) {
       return 15.0;
     } else if (valid == 1) {
-      x = random.nextInt(200).toDouble();
+      x = random.nextInt(150).toDouble();
       return x;
     } else {
       return x;
@@ -39,7 +39,7 @@ class Square {
     if (valid == 0) {
       return 0;
     } else if (valid == 1) {
-      y = random.nextInt(15).toDouble();
+      y = random.nextInt(30).toDouble();
       return y;
     } else {
       return y;
@@ -78,12 +78,12 @@ class SquareRounded {
 
   double squareRoundedXPosition(valid) {
     if (valid == 0) {
-      return 80.0;
+      return 70.0;
     } else if (valid == 1) {
       x = random.nextInt(200).toDouble();
       return x;
     } else if (valid == 1) {
-      x = random.nextInt(200).toDouble();
+      x = random.nextInt(150).toDouble();
       return x;
     } else {
       return x;
@@ -94,7 +94,7 @@ class SquareRounded {
     if (valid == 0) {
       return 0;
     } else if (valid == 1) {
-      y = random.nextInt(15).toDouble();
+      y = random.nextInt(30).toDouble();
       return y;
     } else {
       return y;
@@ -117,7 +117,7 @@ class Circle {
   double x, y;
   Color colorCircle(valid, qualities) {
     if (valid == 10) {
-      corInicial = ColorGenerator.getSquareRoundedColor();
+      corInicial = ColorGenerator.getCircleColor(qualities);
       cor = corInicial;
       return corInicial;
     } else if (valid == 0) {
@@ -132,9 +132,9 @@ class Circle {
 
   double circleXPosition(valid) {
     if (valid == 0) {
-      return 145.0;
+      return 125.0;
     } else if (valid == 1) {
-      x = random.nextInt(200).toDouble();
+      x = random.nextInt(150).toDouble();
       return x;
     } else {
       return x;
@@ -145,7 +145,7 @@ class Circle {
     if (valid == 0) {
       return 0;
     } else if (valid == 1) {
-      y = random.nextInt(15).toDouble();
+      y = random.nextInt(30).toDouble();
       return y;
     } else {
       return y;

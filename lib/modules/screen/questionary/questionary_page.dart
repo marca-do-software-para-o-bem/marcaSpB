@@ -31,11 +31,7 @@ class QuestionaryPage extends StatelessWidget {
               appBar: AppBar(
                 actions: <Widget>[
                   Icon(LineAwesomeIcons.square_full,
-<<<<<<< HEAD
                       color: Color.fromARGB(255, 0, 191, 255), size: 35),
-=======
-                      color: Color.fromARGB(255, 0, 191, 255), size: 32),
->>>>>>> 532f4365ba1b491af699fd0addef9a8384495474
                   Icon(MdiIcons.squareRounded,
                       color: Color.fromARGB(255, 255, 20, 147), size: 32),
                   Icon(

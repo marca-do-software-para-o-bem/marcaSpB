@@ -28,7 +28,7 @@ class _HomeState extends State<GeneratedImagePage> {
   int valid = 10;
   int validXPosition = 0;
   int validYPosition = 0;
-  int validZPosition = 4;
+  int validZPosition = 5;
   int zIndex;
   Square square = new Square();
   SquareRounded squareRounded = new SquareRounded();
@@ -113,7 +113,9 @@ class _HomeState extends State<GeneratedImagePage> {
   Uint8List bytes1;
 
   Widget build(BuildContext context) {
-    zIndex = widget.qualities.index;
+    if (validZPosition == 5) {
+      zIndex = widget.qualities.index;
+    }
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -275,4 +277,6 @@ class _HomeState extends State<GeneratedImagePage> {
 }
 
 final ButtonStyle elevatedButtonstyle = ElevatedButton.styleFrom(
-    padding: EdgeInsets.all(10), primary: Colors.pink, onPrimary: Colors.white);
+    padding: EdgeInsets.all(10),
+    primary: Color.fromARGB(255, 255, 20, 147),
+    onPrimary: Colors.white);

@@ -34,145 +34,134 @@ class MapScreenState extends State<ProfilePage>
 
   @override
   Widget build(BuildContext context) {
-    
-            return Scaffold(
-              appBar: _getAppBar(),
-              body: Stack(
-                children: [
-                  SingleChildScrollView(
+    return Scaffold(
+      appBar: _getAppBar(),
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  height: 250.0,
+                  color: Colors.white,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 40.0),
+                        child: profileImage(),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  color: Color(0xffFFFFFF),
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 25.0),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Container(
-                          height: 250.0,
-                          color: Colors.white,
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(top: 40.0),
-                                child: profileImage(),
-                              )
-                            ],
-                          ),
-                        ),
-                        Container(
-                          color: Color(0xffFFFFFF),
-                          child: Padding(
-                            padding: EdgeInsets.only(bottom: 25.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                        Padding(
+                            padding: EdgeInsets.only(
+                                left: 25.0, right: 25.0, top: 25.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      'Software para o bem',
+                                      style: TextStyle(
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    _status ? _getEditIcon() : Container(),
+                                  ],
+                                )
+                              ],
+                            )),
+                        Padding(
+                            padding: EdgeInsets.only(
+                                left: 25.0, right: 25.0, top: 25.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 25.0, right: 25.0, top: 25.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Text(
-                                              'Software para o bem',
-                                              style: TextStyle(
-                                                  fontSize: 18.0,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ],
-                                        ),
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            _status
-                                                ? _getEditIcon()
-                                                : Container(),
-                                          ],
-                                        )
-                                      ],
-                                    )),
-                                Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 25.0, right: 25.0, top: 25.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Expanded(
-                                          child: boxTitle("Nome"),
-                                          flex: 2,
-                                        ),
-                                        Expanded(
-                                          child: boxTitle("CPF/CNPJ"),
-                                          flex: 2,
-                                        ),
-                                      ],
-                                    )),
-                                BoxUserNameCPF(
-                                    "Software Para o Bem", "-----", _status),
-                                Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 25.0, right: 25.0, top: 25.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [boxTitle("Email")],
-                                        ),
-                                      ],
-                                    )),
-                                boxUserdata("softwarePB@spb.com", _status),
-                                Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 25.0, right: 25.0, top: 25.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [boxTitle("Endereço")],
-                                        ),
-                                      ],
-                                    )),
-                                boxUserdata("-----", _status),
-                                Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 25.0, right: 25.0, top: 25.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Expanded(
-                                          child: boxTitle("CEP"),
-                                          flex: 2,
-                                        ),
-                                      ],
-                                    )),
-                                boxUserdata("user.account.cep", _status),
-                                !_status ? _getActionButtons() : Container(),
+                                Expanded(
+                                  child: boxTitle("Nome"),
+                                  flex: 2,
+                                ),
+                                Expanded(
+                                  child: boxTitle("CPF/CNPJ"),
+                                  flex: 2,
+                                ),
                               ],
-                            ),
-                          ),
-                        )
+                            )),
+                        BoxUserNameCPF("Software Para o Bem", "-----", _status),
+                        Padding(
+                            padding: EdgeInsets.only(
+                                left: 25.0, right: 25.0, top: 25.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [boxTitle("Email")],
+                                ),
+                              ],
+                            )),
+                        boxUserdata("softwarePB@spb.com", _status),
+                        Padding(
+                            padding: EdgeInsets.only(
+                                left: 25.0, right: 25.0, top: 25.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [boxTitle("Endereço")],
+                                ),
+                              ],
+                            )),
+                        boxUserdata("-----", _status),
+                        Padding(
+                            padding: EdgeInsets.only(
+                                left: 25.0, right: 25.0, top: 25.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: boxTitle("CEP"),
+                                  flex: 2,
+                                ),
+                              ],
+                            )),
+                        boxUserdata("user.account.cep", _status),
+                        !_status ? _getActionButtons() : Container(),
                       ],
                     ),
                   ),
-                ],
-              ),
-            );
-          }
-    
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   void dispose() {
     // Clean up the controller when the Widget is disposed
@@ -252,14 +241,23 @@ class MapScreenState extends State<ProfilePage>
   }
 
   Widget _getAppBar() {
-  return  AppBar(
-        actions: <Widget>[
-          Icon(LineAwesomeIcons.square_full, color: Colors.blue[700], size: 32,),
-          Icon(MdiIcons.squareRounded, color: Color.fromARGB(255, 255, 20, 147), size: 32),
-          Icon(Icons.circle, color: Color.fromARGB(255, 149, 193, 31), size: 32,)
-        ],
-        title: Text('Marca Mutante'),
-        backgroundColor: Colors.blue[400],
-      );
+    return AppBar(
+      actions: <Widget>[
+        Icon(
+          LineAwesomeIcons.square_full,
+          color: Colors.blue[700],
+          size: 35,
+        ),
+        Icon(MdiIcons.squareRounded,
+            color: Color.fromARGB(255, 255, 20, 147), size: 32),
+        Icon(
+          Icons.circle,
+          color: Color.fromARGB(255, 149, 193, 31),
+          size: 32,
+        )
+      ],
+      title: Text('Marca Mutante'),
+      backgroundColor: Colors.blue[400],
+    );
   }
 }

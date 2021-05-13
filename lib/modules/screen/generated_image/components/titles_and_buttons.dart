@@ -86,14 +86,14 @@ Widget zAxisIconsButtons(Function squareInFront, Function squareRoundedInFront,
                 size: 30,
               ),
               squareRoundedInFront,
-              Colors.pink),
+              Color.fromARGB(255, 255, 105, 180)),
           zButton(
               Icon(
                 MdiIcons.circle,
                 size: 30,
               ),
               circleInFront,
-              Color.fromARGB(255, 255, 105, 180))
+              Colors.pink[200])
         ])
       ],
     ),

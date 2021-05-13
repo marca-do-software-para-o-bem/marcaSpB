@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(
-           children: [
+          children: [
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -50,17 +50,31 @@ class HomePage extends StatelessWidget {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        'Marca Mutante é uma identidade que pode ser alterada, mas possui um elemento básico que permanece sempre o mesmo. Quer seja a palavra, texto, cores ou forma; a marca ainda é reconhecível. Marca Mutante é uma maneira de dar uma nova aparência à sua identidade sem alterar completamente a identidade.',
+                        ' Marca Mutante é uma identidade visual que pode ser alterada, mas possui um elemento básico que permanece sempre o mesmo. Quer seja a palavra, texto, cores ou forma,a marca ainda é reconhecível. ',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.normal,
                           color: Colors.white,
                         ),
                       ),
+                      Text(
+                          " \nÉ uma maneira de dar uma nova aparência a sua marca sem alterar completamente a identidade. \n\n Gostou da ideia?",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.white,
+                          )),
                       SizedBox(height: 10),
-                      Text('Crie sua marca mutante aqui:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),),
-                        ElevatedButton(
-                        onPressed: () => Navigator.pushNamed(context, '/questionary'),
+                      Text(
+                        '\nCrie sua marca mutante aqui:',
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                      ElevatedButton(
+                        onPressed: () =>
+                            Navigator.pushNamed(context, '/questionary'),
                         child: Text('Gerar'),
                       ),
                     ],
@@ -68,7 +82,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             )
-           ],
+          ],
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
         ),

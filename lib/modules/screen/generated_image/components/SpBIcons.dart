@@ -16,6 +16,8 @@ class SpBIcons {
       zIndex = 0;
     } else if (zIndex == 3) {
       zIndex = x;
+    } else {
+      zIndex = zIndex;
     }
     if (zIndex == 0) {
       return Stack(
@@ -23,7 +25,7 @@ class SpBIcons {
           Container(
             color: Colors.white,
             width: 300,
-            height: 60,
+            height: 80,
           ),
           square.generateSquare(
               valid, validXPosition, validYPosition, qualities),
@@ -39,7 +41,7 @@ class SpBIcons {
           Container(
             color: Colors.white,
             width: 300,
-            height: 60,
+            height: 80,
           ),
           square.generateSquare(
               valid, validXPosition, validYPosition, qualities),
@@ -55,7 +57,7 @@ class SpBIcons {
           Container(
             color: Colors.white,
             width: 300,
-            height: 60,
+            height: 80,
           ),
           squareRounded.generateSquareRounded(
               valid, validXPosition, validYPosition, qualities),
