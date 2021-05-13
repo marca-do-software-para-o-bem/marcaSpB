@@ -16,17 +16,52 @@ class HomePage extends StatelessWidget {
         title: Text('Marca Mutante'),
         backgroundColor: Colors.blue[400],
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
+           children: [
+            SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                child: Container(
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                      color: Colors.blue[300]),
+                  padding: EdgeInsets.fromLTRB(30, 30, 30, 30),
+                  child: Column(
+                    children: [
+                      Text(
+                        'O que é uma marca mutante?',
+                        style: TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Marca Mutante é uma identidade que pode ser alterada, mas possui um elemento básico que permanece sempre o mesmo. Quer seja a palavra, texto, cores ou forma; a marca ainda é reconhecível. Marca Mutante é uma maneira de dar uma nova aparência à sua identidade sem alterar completamente a identidade.',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text('Crie sua marca mutante aqui:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),),
+                        ElevatedButton(
+                        onPressed: () => Navigator.pushNamed(context, '/questionary'),
+                        child: Text('Gerar'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            )
+           ],
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Clique para gerar uma nova'),
-            ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, '/questionary'),
-              child: Text('Clica aqui'),
-            ),
-          ],
         ),
       ),
     );
