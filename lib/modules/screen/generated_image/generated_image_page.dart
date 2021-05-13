@@ -50,7 +50,6 @@ class _HomeState extends State<GeneratedImagePage> {
   }
 
   void _changeXPosition() {
-    valid = 3;
     validXPosition = 1;
     setState(() {});
   }
@@ -65,7 +64,6 @@ class _HomeState extends State<GeneratedImagePage> {
   }
 
   void _changeYPosition() {
-    valid = 3;
     validYPosition = 1;
     setState(() {});
   }
@@ -80,7 +78,6 @@ class _HomeState extends State<GeneratedImagePage> {
   }
 
   void _changeZPosition() {
-    valid = 3;
     validZPosition = 1;
     setState(() {});
   }
@@ -120,16 +117,24 @@ class _HomeState extends State<GeneratedImagePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-         actions: <Widget>[
-            Icon(LineAwesomeIcons.square_full, color: Color.fromARGB(255, 0, 191, 255), size: 32,),
-            Icon(MdiIcons.squareRounded, color: Color.fromARGB(255, 255, 20, 147), size: 32),
-            Icon(Icons.circle, color: Color.fromARGB(255, 149, 193, 31), size: 32,)
-          ],
+        actions: <Widget>[
+          Icon(
+            LineAwesomeIcons.square_full,
+            color: Color.fromARGB(255, 0, 191, 255),
+            size: 35,
+          ),
+          Icon(MdiIcons.squareRounded, color: Colors.pink[200], size: 32),
+          Icon(
+            Icons.circle,
+            color: Color.fromARGB(255, 149, 193, 31),
+            size: 32,
+          )
+        ],
         title: Text(
           "Editor",
           style: TextStyle(color: Colors.white, fontSize: 25),
         ),
-        backgroundColor: Colors.pink,
+        backgroundColor: Color.fromARGB(255, 255, 20, 147),
       ),
       body: Column(
         children: [

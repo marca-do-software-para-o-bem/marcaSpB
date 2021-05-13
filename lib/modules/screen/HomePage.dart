@@ -9,9 +9,18 @@ class HomePage extends StatelessWidget {
       drawer: SideDrawer(),
       appBar: AppBar(
         actions: <Widget>[
-          Icon(LineAwesomeIcons.square_full, color: Colors.blue[700], size: 32,),
-          Icon(MdiIcons.squareRounded, color: Color.fromARGB(255, 255, 20, 147), size: 32),
-          Icon(Icons.circle, color: Color.fromARGB(255, 149, 193, 31), size: 32,)
+          Icon(
+            LineAwesomeIcons.square_full,
+            color: Colors.blue[700],
+            size: 35,
+          ),
+          Icon(MdiIcons.squareRounded,
+              color: Color.fromARGB(255, 255, 20, 147), size: 32),
+          Icon(
+            Icons.circle,
+            color: Color.fromARGB(255, 149, 193, 31),
+            size: 32,
+          )
         ],
         title: Text('Marca Mutante'),
         backgroundColor: Colors.blue[400],
@@ -41,7 +50,7 @@ class SideDrawer extends StatelessWidget {
         children: <Widget>[
           DrawerHeader(
             child: Center(
-              child: Image.asset('assets/images/SpB2.png'),             
+              child: Image.asset('assets/images/SpB2.png'),
             ),
             decoration: BoxDecoration(
               color: Colors.blue[200],
