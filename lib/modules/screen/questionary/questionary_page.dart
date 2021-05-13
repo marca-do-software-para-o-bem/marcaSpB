@@ -30,16 +30,21 @@ class QuestionaryPage extends StatelessWidget {
             return Scaffold(
               appBar: AppBar(
                 actions: <Widget>[
-                  Icon(LineAwesomeIcons.square_full, color: Color.fromARGB(255, 0, 191, 255), size: 32),
-                  Icon(MdiIcons.squareRounded, color: Color.fromARGB(255, 255, 20, 147), size: 32),
-                  Icon(Icons.circle, color: Color.fromARGB(255, 149, 193, 31), size: 32,)
+                  Icon(LineAwesomeIcons.square_full,
+                      color: Color.fromARGB(255, 0, 191, 255), size: 32),
+                  Icon(MdiIcons.squareRounded,
+                      color: Color.fromARGB(255, 255, 20, 147), size: 32),
+                  Icon(
+                    Icons.circle,
+                    color: Color.fromARGB(255, 149, 193, 31),
+                    size: 32,
+                  )
                 ],
                 title: Text('Questionario'),
                 backgroundColor: Colors.green,
               ),
               body: SingleChildScrollView(
                 child: Container(
-                  height: 800,
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     children: [
@@ -192,7 +197,7 @@ class QuestionaryPage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Spacer(),
+                      SizedBox(height: 20),
                       Card(
                         color: Colors.green,
                         child: InkWell(
