@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:marca_spb/models/user.dart';
 import 'package:marca_spb/modules/screen/user_profile/bloc/profile_bloc.dart';
 import 'package:marca_spb/modules/screen/user_profile/bloc/profile_event.dart';
@@ -10,6 +11,7 @@ import 'package:marca_spb/modules/screen/user_profile/components/boxUser_Name_Cp
 import 'package:marca_spb/modules/screen/user_profile/components/boxUser_data.dart';
 import 'package:marca_spb/modules/screen/user_profile/components/circular_loading.dart';
 import 'package:marca_spb/modules/screen/user_profile/components/profileImage.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 const String _APPBARTITLE = 'Profile';
 
@@ -32,11 +34,7 @@ class MapScreenState extends State<ProfilePage>
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder(
-        bloc: _bloc,
-        builder: (context, state) {
-          if (state.user != null) {
-            User user = state.user;
+    
             return Scaffold(
               appBar: _getAppBar(),
               body: Stack(
@@ -77,8 +75,8 @@ class MapScreenState extends State<ProfilePage>
                                               MainAxisAlignment.start,
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            new Text(
-                                              user.username,
+                                            Text(
+                                              'Software para o bem',
                                               style: TextStyle(
                                                   fontSize: 18.0,
                                                   fontWeight: FontWeight.bold),
@@ -116,7 +114,7 @@ class MapScreenState extends State<ProfilePage>
                                       ],
                                     )),
                                 BoxUserNameCPF(
-                                    user.firstName, user.account.cnpj, _status),
+                                    "Software Para o Bem", "-----", _status),
                                 Padding(
                                     padding: EdgeInsets.only(
                                         left: 25.0, right: 25.0, top: 25.0),
@@ -131,7 +129,7 @@ class MapScreenState extends State<ProfilePage>
                                         ),
                                       ],
                                     )),
-                                boxUserdata(user.email, _status),
+                                boxUserdata("softwarePB@spb.com", _status),
                                 Padding(
                                     padding: EdgeInsets.only(
                                         left: 25.0, right: 25.0, top: 25.0),
@@ -146,7 +144,7 @@ class MapScreenState extends State<ProfilePage>
                                         ),
                                       ],
                                     )),
-                                boxUserdata(user.account.endereco, _status),
+                                boxUserdata("-----", _status),
                                 Padding(
                                     padding: EdgeInsets.only(
                                         left: 25.0, right: 25.0, top: 25.0),
@@ -161,7 +159,7 @@ class MapScreenState extends State<ProfilePage>
                                         ),
                                       ],
                                     )),
-                                boxUserdata(user.account.cep, _status),
+                                boxUserdata("user.account.cep", _status),
                                 !_status ? _getActionButtons() : Container(),
                               ],
                             ),
@@ -174,10 +172,7 @@ class MapScreenState extends State<ProfilePage>
               ),
             );
           }
-          return CircularLoading(_getAppBar());
-        });
-  }
-
+    
   @override
   void dispose() {
     // Clean up the controller when the Widget is disposed
@@ -219,7 +214,7 @@ class MapScreenState extends State<ProfilePage>
                   child: RaisedButton(
                 child: Text("Cancel"),
                 textColor: Colors.white,
-                color: Colors.red,
+                color: Colors.blue,
                 onPressed: () {
                   setState(() {
                     _status = true;
@@ -240,7 +235,7 @@ class MapScreenState extends State<ProfilePage>
   Widget _getEditIcon() {
     return GestureDetector(
       child: CircleAvatar(
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.blue,
         radius: 25.0,
         child: Icon(
           Icons.edit,
@@ -257,10 +252,14 @@ class MapScreenState extends State<ProfilePage>
   }
 
   Widget _getAppBar() {
-    return AppBar(
-      title: Text(_APPBARTITLE),
-      centerTitle: true,
-      backgroundColor: Colors.red,
-    );
+  return  AppBar(
+        actions: <Widget>[
+          Icon(LineAwesomeIcons.square_full, color: Colors.blue[700], size: 32,),
+          Icon(MdiIcons.squareRounded, color: Color.fromARGB(255, 255, 20, 147), size: 32),
+          Icon(Icons.circle, color: Color.fromARGB(255, 149, 193, 31), size: 32,)
+        ],
+        title: Text('Marca Mutante'),
+        backgroundColor: Colors.blue[400],
+      );
   }
 }

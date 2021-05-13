@@ -20,7 +20,10 @@ main() {
     routes: routes,
     debugShowCheckedModeBanner: false,
     theme: new ThemeData(
-        primaryColor: Color(0xff0082CD), primaryColorDark: Color(0xff0082CD)),
+        primaryColor: Colors.green, 
+        primaryColorDark: Color(0xff0082CD),
+        accentColor: Colors.green[400],
+        ),
     home: BlocProvider(
       create: (BuildContext context) => UserBloc(UserRepositoryImpl()),
       child: HomePage(),

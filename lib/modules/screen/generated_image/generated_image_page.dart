@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:marca_spb/modules/screen/generated_image/components/caputureFunction.dart';
 import 'package:marca_spb/modules/screen/generated_image/components/shapesClasses.dart';
 import 'package:marca_spb/modules/screen/generated_image/components/titles_and_buttons.dart';
@@ -7,6 +8,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:image_picker/image_picker.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import '../../../models/brand.dart';
@@ -118,12 +120,16 @@ class _HomeState extends State<GeneratedImagePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+         actions: <Widget>[
+            Icon(LineAwesomeIcons.square_full, color: Color.fromARGB(255, 0, 191, 255), size: 32,),
+            Icon(MdiIcons.squareRounded, color: Color.fromARGB(255, 255, 20, 147), size: 32),
+            Icon(Icons.circle, color: Color.fromARGB(255, 149, 193, 31), size: 32,)
+          ],
         title: Text(
-          "Teste",
+          "Editor",
           style: TextStyle(color: Colors.white, fontSize: 25),
         ),
         backgroundColor: Colors.pink,
-        centerTitle: true,
       ),
       body: Column(
         children: [
@@ -178,17 +184,17 @@ class _HomeState extends State<GeneratedImagePage> {
                   Column(
                     children: [
                       subtitle(" X Axis"),
-                      buttonRow2(
+                      buttonRow1(
                           _changeXPosition, _lockXPostion, _resetXPosition)
                     ],
                   ),
                   Column(
                     children: [
                       subtitle(" Y Axis"),
-                      buttonRow3(
+                      buttonRow1(
                           _changeYPosition, _lockYPostion, _resetYPosition),
                       subtitle("Z Axis"),
-                      buttonRow4(
+                      buttonRow1(
                           _changeZPosition, _lockZPostion, _resetZPosition),
                       subtitle("Geometric shape in front"),
                       zAxisIconsButtons(

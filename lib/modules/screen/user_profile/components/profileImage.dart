@@ -24,7 +24,7 @@ Widget profileImage() {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircleAvatar(
-              backgroundColor: Colors.red,
+              backgroundColor: Colors.blue,
               radius: 25.0,
               child: Icon(
                 Icons.camera_alt,

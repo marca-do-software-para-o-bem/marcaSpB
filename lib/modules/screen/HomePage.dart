@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -6,6 +8,11 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       drawer: SideDrawer(),
       appBar: AppBar(
+        actions: <Widget>[
+          Icon(LineAwesomeIcons.square_full, color: Colors.blue[700], size: 32,),
+          Icon(MdiIcons.squareRounded, color: Color.fromARGB(255, 255, 20, 147), size: 32),
+          Icon(Icons.circle, color: Color.fromARGB(255, 149, 193, 31), size: 32,)
+        ],
         title: Text('Marca Mutante'),
         backgroundColor: Colors.blue[400],
       ),
@@ -34,14 +41,10 @@ class SideDrawer extends StatelessWidget {
         children: <Widget>[
           DrawerHeader(
             child: Center(
-              child: Text(
-                'Marca Mutante',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.black, fontSize: 25),
-              ),
+              child: Image.asset('assets/images/SpB2.png'),             
             ),
             decoration: BoxDecoration(
-              color: Colors.blue[400],
+              color: Colors.blue[200],
             ),
           ),
           ListTile(
@@ -58,16 +61,6 @@ class SideDrawer extends StatelessWidget {
             leading: Icon(Icons.border_color),
             title: Text('Criar marca'),
             onTap: () => {Navigator.pushNamed(context, '/questionary')},
-          ),
-          ListTile(
-            leading: Icon(Icons.border_color),
-            title: Text('Editar SpB'),
-            onTap: () => {Navigator.pushNamed(context, '/generate')},
-          ),
-          ListTile(
-            leading: Icon(Icons.exit_to_app),
-            title: Text('Logout'),
-            onTap: () => Navigator.of(context).pop(),
           ),
         ],
       ),

@@ -1,11 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:marca_spb/models/brand.dart';
 import 'package:marca_spb/modules/screen/questionary/bloc/questionary_bloc.dart';
 import 'package:marca_spb/modules/screen/questionary/bloc/questionary_event.dart';
 import 'package:marca_spb/modules/screen/questionary/bloc/questionary_state.dart';
 import 'package:marca_spb/modules/screen/user_profile/components/circular_loading.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 const String _APPBARTITLE = 'Profile';
 
@@ -27,7 +29,13 @@ class QuestionaryPage extends StatelessWidget {
           if (state is LoadedSucessState) {
             return Scaffold(
               appBar: AppBar(
+                actions: <Widget>[
+                  Icon(LineAwesomeIcons.square_full, color: Color.fromARGB(255, 0, 191, 255), size: 32),
+                  Icon(MdiIcons.squareRounded, color: Color.fromARGB(255, 255, 20, 147), size: 32),
+                  Icon(Icons.circle, color: Color.fromARGB(255, 149, 193, 31), size: 32,)
+                ],
                 title: Text('Questionario'),
+                backgroundColor: Colors.green,
               ),
               body: SingleChildScrollView(
                 child: Container(
@@ -186,7 +194,7 @@ class QuestionaryPage extends StatelessWidget {
                       ),
                       Spacer(),
                       Card(
-                        color: Colors.blue,
+                        color: Colors.green,
                         child: InkWell(
                           child: Container(
                             height: MediaQuery.of(context).size.height * .08,
